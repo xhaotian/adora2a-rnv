@@ -1,0 +1,17 @@
+inputs/
+results/
+*.h5ad
+*.h5
+*.loom
+*.rds
+*.RData
+*.xlsx
+*.docx
+*.pdf
+*.tiff
+*.png
+__pycache__/
+.DS_Store
+.env
+*.pem
+*.key
