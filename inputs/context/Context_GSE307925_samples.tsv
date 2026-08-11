@@ -1,0 +1,13 @@
+study	sample_id	group	contrast	ADORA2A	facet_rule
+GSE307925	H1	treated	CD31high_treated_vs_untreated	-2.14441609658374	separate dataset facet; no synthetic pooled human effect
+GSE307925	H2	untreated	CD31high_treated_vs_untreated	-1.60850793454551	separate dataset facet; no synthetic pooled human effect
+GSE307925	H3	untreated	CD31high_treated_vs_untreated	0.416689490104846	separate dataset facet; no synthetic pooled human effect
+GSE307925	H4	untreated	CD31high_treated_vs_untreated	-0.582710153598647	separate dataset facet; no synthetic pooled human effect
+GSE307925	H5	untreated	CD31high_treated_vs_untreated	-1.09032300410511	separate dataset facet; no synthetic pooled human effect
+GSE307925	H6	treated	CD31high_treated_vs_untreated	-0.99693893229018	separate dataset facet; no synthetic pooled human effect
+GSE307925	H7	treated	CD31high_treated_vs_untreated	-1.35910455069817	separate dataset facet; no synthetic pooled human effect
+GSE307925	L1	untreated	CD31low_treated_vs_untreated	-4.26826831751076	separate dataset facet; no synthetic pooled human effect
+GSE307925	L2	untreated	CD31low_treated_vs_untreated	0.641620586793777	separate dataset facet; no synthetic pooled human effect
+GSE307925	L3	untreated	CD31low_treated_vs_untreated	-6.38577867790734	separate dataset facet; no synthetic pooled human effect
+GSE307925	L4	treated	CD31low_treated_vs_untreated	2.32209883190512	separate dataset facet; no synthetic pooled human effect
+GSE307925	L5	treated	CD31low_treated_vs_untreated	-6.38577867790734	separate dataset facet; no synthetic pooled human effect

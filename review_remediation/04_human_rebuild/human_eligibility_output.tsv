@@ -1,0 +1,10 @@
+accession	GSM	BioSample	donor_id	endothelial_cells	donor_quality_status	donor_quality_rationale	six_gene_coverage_fraction	six_gene_sensitivity_available	score_availability_role
+GSE165784	GSM5049905	SAMN17678463	Case 1	10	LOW_CELL_SENSITIVITY	10-19 QC-passing endothelial cells	1.0	YES	analysis-specific sensitivity availability; not donor eligibility
+GSE165784	GSM5049906	SAMN17678460	Case 2	10	LOW_CELL_SENSITIVITY	10-19 QC-passing endothelial cells	1.0	YES	analysis-specific sensitivity availability; not donor eligibility
+GSE165784	GSM5277737	SAMN18979499	Case 3	114	HIGHER_CELL_COUNT	>=20 QC-passing endothelial cells	1.0	YES	analysis-specific sensitivity availability; not donor eligibility
+GSE165784	GSM5690478	SAMN23151555	Case 4	42	HIGHER_CELL_COUNT	>=20 QC-passing endothelial cells	1.0	YES	analysis-specific sensitivity availability; not donor eligibility
+GSE165784	GSM5690479	SAMN23151556	Case 5	91	HIGHER_CELL_COUNT	>=20 QC-passing endothelial cells	1.0	YES	analysis-specific sensitivity availability; not donor eligibility
+GSE245561	GSM7845000	SAMN37856715	Sample 3	136	HIGHER_CELL_COUNT	>=20 QC-passing endothelial cells	1.0	YES	analysis-specific sensitivity availability; not donor eligibility
+GSE245561	GSM7845001	SAMN37856714	Sample 4	199	HIGHER_CELL_COUNT	>=20 QC-passing endothelial cells	1.0	YES	analysis-specific sensitivity availability; not donor eligibility
+GSE245561	GSM7845002	SAMN37856713	Sample 2	1058	HIGHER_CELL_COUNT	>=20 QC-passing endothelial cells	1.0	YES	analysis-specific sensitivity availability; not donor eligibility
+GSE245561	GSM7845003	SAMN37856712	Sample 1	547	HIGHER_CELL_COUNT	>=20 QC-passing endothelial cells	1.0	YES	analysis-specific sensitivity availability; not donor eligibility

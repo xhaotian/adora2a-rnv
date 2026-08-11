@@ -1,0 +1,12 @@
+study	sample_id	group	contrast	ADORA2A	facet_rule
+GSE94019	Control1	control_CD31	PDR_FVM_CD31_vs_control_CD31	5.30082221455832	separate dataset facet; no synthetic pooled human effect
+GSE94019	Control2	control_CD31	PDR_FVM_CD31_vs_control_CD31	5.2263255702694	separate dataset facet; no synthetic pooled human effect
+GSE94019	MEEI18C	PDR_FVM_CD31	PDR_FVM_CD31_vs_control_CD31	-2.61146101752532	separate dataset facet; no synthetic pooled human effect
+GSE94019	MEEI23C	PDR_FVM_CD31	PDR_FVM_CD31_vs_control_CD31	3.85825405089389	separate dataset facet; no synthetic pooled human effect
+GSE94019	MEEI26C	PDR_FVM_CD31	PDR_FVM_CD31_vs_control_CD31	-2.61145707697847	separate dataset facet; no synthetic pooled human effect
+GSE94019	MEEI28C	PDR_FVM_CD31	PDR_FVM_CD31_vs_control_CD31	3.24182207796514	separate dataset facet; no synthetic pooled human effect
+GSE94019	MEEI29C	PDR_FVM_CD31	PDR_FVM_CD31_vs_control_CD31	-2.6114610179335	separate dataset facet; no synthetic pooled human effect
+GSE94019	MEEI30C	PDR_FVM_CD31	PDR_FVM_CD31_vs_control_CD31	-2.6114610179335	separate dataset facet; no synthetic pooled human effect
+GSE94019	MEEI32C	PDR_FVM_CD31	PDR_FVM_CD31_vs_control_CD31	4.52132397756252	separate dataset facet; no synthetic pooled human effect
+GSE94019	MEEI33C	PDR_FVM_CD31	PDR_FVM_CD31_vs_control_CD31	0.356309393094287	separate dataset facet; no synthetic pooled human effect
+GSE94019	MEEI34C	PDR_FVM_CD31	PDR_FVM_CD31_vs_control_CD31	-2.6114610179335	separate dataset facet; no synthetic pooled human effect

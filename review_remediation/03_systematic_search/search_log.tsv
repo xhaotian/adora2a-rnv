@@ -1,0 +1,5 @@
+source	query_id	query	executed_at	raw_hit_count	returned_hit_count
+NCBI_GDS	GEO_01	"""oxygen induced retinopathy"" AND Mus musculus[Organism]"	2026-08-11T14:24:07+08:00	211	211
+NCBI_GDS	GEO_02	"""oxygen-induced retinopathy"" AND Mus musculus[Organism]"	2026-08-11T14:24:07+08:00	211	211
+NCBI_GDS	GEO_03	"""OIR retina"" AND Mus musculus[Organism]"	2026-08-11T14:24:07+08:00	10	10
+PubMed	PUBMED_01	"(""oxygen-induced retinopathy""[Title/Abstract] OR ""oxygen induced retinopathy""[Title/Abstract] OR OIR[Title/Abstract]) AND (mouse[Title/Abstract] OR mice[Title/Abstract] OR murine[Title/Abstract]) AND retina*[Title/Abstract] AND (transcriptom*[Title/Abstract] OR ""RNA-seq""[Title/Abstract] OR ""RNA sequencing""[Title/Abstract] OR microarray[Title/Abstract] OR ""gene expression""[Title/Abstract])"	2026-08-11T14:24:07+08:00	141	141

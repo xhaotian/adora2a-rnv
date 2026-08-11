@@ -1,0 +1,4 @@
+cohort	records	decision	evidence
+PRJNA483866/PRJNA1347474	PRJNA483866;PRJNA1347474	COUNT_ONCE_AS_PRJNA1347474	same collection date, time points, treatment groups and biological-replicate labels; PRJNA1347474 is a newer Ribo-minus library set
+GSE124956 related series	GSE124956;GSE137705;GSE150794	P17_GSE124956_ONLY	separate age-specific accessions from the same project; only GSE124956 is P17
+GSE301407/PRJNA1284579	GSE301407;PRJNA1284579	COUNT_ONCE_AS_GSE301407	same WT/OIR/PCC samples and run-level records

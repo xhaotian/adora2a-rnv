@@ -1,0 +1,2 @@
+gene	effect	se	stat	p	fdr	method	study	contrast	species	lo	hi	label	record_type	donor_independence_boundary
+ADORA2A	0.926437125333334	0.21123875215523	4.38573470010151	0.0004706715558921	0.107872832269336	limma moderated	GSE60436	active_vs_inactive	human	0.512409171109083	1.34046507955758	GSE60436 · active_vs_inactive	active_vs_inactive_result	deposited samples are analysis units; donor independence cannot be fully confirmed

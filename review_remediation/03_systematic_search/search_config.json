@@ -1,0 +1,13 @@
+{
+  "executed_at": "2026-08-11T14:24:07+08:00",
+  "geo_database": "NCBI GDS",
+  "geo_concepts": [
+    "\"oxygen induced retinopathy\"",
+    "\"oxygen-induced retinopathy\"",
+    "\"OIR retina\""
+  ],
+  "geo_organism_filter": "Mus musculus[Organism]",
+  "pubmed_query": "(\"oxygen-induced retinopathy\"[Title/Abstract]\n OR \"oxygen induced retinopathy\"[Title/Abstract]\n OR OIR[Title/Abstract])\nAND\n(mouse[Title/Abstract]\n OR mice[Title/Abstract]\n OR murine[Title/Abstract])\nAND retina*[Title/Abstract]\nAND\n(transcriptom*[Title/Abstract]\n OR \"RNA-seq\"[Title/Abstract]\n OR \"RNA sequencing\"[Title/Abstract]\n OR microarray[Title/Abstract]\n OR \"gene expression\"[Title/Abstract])",
+  "retmax": 10000,
+  "note": "P17 was not used as a retrieval filter; it is assessed during screening."
+}

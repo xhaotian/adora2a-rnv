@@ -1,45 +1,27 @@
-# ADORA2A across mouse OIR and human retinal neovascularization
+# ADORA2A transcript evidence in retinal neovascularization
 
-This repository contains the analysis code supporting the study:
+This repository is the version-locked reproducibility release for the PLOS ONE submission. It regenerates the 16-cohort mouse study effects and random-effects synthesis, tissue-compartment sensitivity, exploratory Pustejovsky–Rodgers funnel-asymmetry diagnostic, donor-level human sensitivity models, non-pooled human context tables, Source Data, PRISMA checklist, five main figures, and supplementary figures.
 
-> Cross-dataset transcriptomic assessment of ADORA2A in mouse OIR and human retinal neovascularization
+The scientific boundary is narrow: the mouse synthesis estimates the average standardized ADORA2A direction across eligible P17 OIR retinal transcriptomic contexts. The historical-list-based six-gene human score is sensitivity-only. Human contexts remain separate and are not pooled. Outputs do not establish receptor activation, causality, or therapeutic efficacy.
 
-The study synthesizes eight independent public P17 oxygen-induced retinopathy (OIR) studies and evaluates prespecified human retinal-neovascularization evidence. The mouse random-effects estimate was positive, but heterogeneity was substantial and its 95% prediction interval crossed zero. A result-blind, uniformly rebuilt analysis of seven eligible human proliferative diabetic retinopathy donors did not provide reproducible support. The code therefore supports a bounded cross-dataset assessment, not human validation, target designation, or therapeutic efficacy.
+## Reproduce
 
-## Repository contents
+Use Python 3.13 and R 4.5 with the versions in `requirements.lock.txt` and `R-packages.lock.txt`, then run:
 
-- `analysis/mouse_meta_analysis.R`: Hedges g study effects, REML random-effects synthesis, Hartung–Knapp inference, prediction interval, and leave-one-study-out analysis.
-- `analysis/human_primary_models.py`: prespecified donor-level unadjusted, dataset-adjusted, and technically adjusted models, including VIF and residual degrees of freedom.
-- `analysis/apply_human_eligibility.py`: deterministic implementation of the result-blind human eligibility rules.
-- `docs/DATA_ACCESS.md`: public accession and input-file guidance.
-- `docs/INPUT_OUTPUT_MAP.md`: mapping between inputs, scripts, and outputs.
-- `code_manifest.tsv`: file-level release manifest.
+```bash
+python -m pip install -r requirements.lock.txt
+Rscript -e 'install.packages("metafor", repos="https://cloud.r-project.org")'
+bash run_all.sh
+```
 
-## Reproduce the principal results
+Generated files are written under `review_remediation/` and `final_submission/`. The run ends with numerical, boundary, figure, and checksum validation.
 
-1. Install Python 3.12 and R 4.5 or later.
-2. Install the pinned Python packages and the required R packages:
+## Public-data retrieval
 
-   ```bash
-   python -m pip install -r requirements.txt
-   Rscript -e 'install.packages(c("metafor", "readxl"))'
-   ```
+No new sequencing data were generated. GEO datasets can be obtained from `https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=<ACCESSION>`. Non-GEO mouse cohorts are NCBI BioProjects PRJNA1227125 and PRJNA1347474; SRA run identifiers and source URLs are listed in `review_remediation/03_systematic_search/non_geo_fastq_manifest.tsv`. The complete item-level search audit is `review_remediation/03_systematic_search/Search_All_Sources.tsv`.
 
-3. Place the article-associated `Source_Data.xlsx` and `Statistical_Results.xlsx` files in `inputs/`.
-4. Run:
+The release-distributed tables are audited public-data extracts sufficient for deterministic reproduction of all submitted numerical results and displays. Full raw-data re-quantification instructions and accession checksums are in `docs/DATA_RETRIEVAL.md`.
 
-   ```bash
-   Rscript analysis/mouse_meta_analysis.R inputs/Source_Data.xlsx results/mouse
-   python analysis/apply_human_eligibility.py inputs/Source_Data.xlsx results/human_eligibility.tsv
-   python analysis/human_primary_models.py inputs/Source_Data.xlsx results/human_models.tsv
-   ```
+## License
 
-The expected frozen estimates are listed in `docs/EXPECTED_RESULTS.md`. Scripts fail with a non-zero exit status if required columns or sheets are absent.
-
-## Data scope
-
-No new sequencing data were generated. Raw public data remain under their source repositories and accession records. Article-associated source data are distributed with the manuscript rather than duplicated in this code repository.
-
-## License and citation
-
-Code is released under the MIT License. Please cite the associated article when using this analysis workflow.
+Code is released under the MIT License. Public source datasets remain governed by their originating repositories and publications.

@@ -1,0 +1,3 @@
+endpoint	term	estimate	se	p	n_samples	n_donors	converged	error	ci95_low	ci95_high	biological_unit	boundary
+ADORA2A	ordered_stage	-0.039610416493106	0.0837395677907011	0.636199539721699	79	43	True		-0.20373695344383053	0.1245161204576185	donor with repeated macular/peripheral samples	ordered diabetic-retinopathy stage; advanced category is not pure PDR
+ADORA2A	ordered_stage:C(region)[T.periphery]	0.098420418917485	0.0767988390110572	0.200005728746351	79	43	True		-0.05210253959867682	0.2489433774336468	donor with repeated macular/peripheral samples	ordered diabetic-retinopathy stage; advanced category is not pure PDR

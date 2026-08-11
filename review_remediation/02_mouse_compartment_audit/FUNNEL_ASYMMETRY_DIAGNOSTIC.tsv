@@ -1,0 +1,2 @@
+method	k	predictor	estimate	standard_error	test_statistic_t	degrees_of_freedom	p
+Pustejovsky-Rodgers weighted regression test for SMD funnel asymmetry	16	sqrt(1/n_OIR + 1/n_control)	0.146461988165379	1.53717991617282	0.0952796654603915	14	0.925443049671832

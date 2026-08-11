@@ -1,0 +1,6 @@
+claim	source	supporting_fields
+positive average mouse direction	Mouse_meta_results	pooled_hedges_g and 95% CI
+mouse heterogeneity limits transport	Mouse_meta_results; Compartment_meta	I2, prediction interval and compartment sensitivity
+human donor estimate is model-dependent	Human_model_results	ADORA2A_z estimates and CIs in M0/M1/M2
+adjusted human models are weakly identified	Human_model_results	VIF, condition number and residual df
+contextual human effects were not pooled	Context registry	biological-unit and pooling boundary

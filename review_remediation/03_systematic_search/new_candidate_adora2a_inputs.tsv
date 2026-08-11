@@ -1,0 +1,52 @@
+study	sample_id	group	value_before_transform	input_scale	Adora2a_raw_count	library_size	source_file	preprocessing_note
+GSE123945	WTNM1	Normoxia	0.8	FPKM			release_input/GSE123945_MWMSmm.genesfpkm.txt.gz	Official series design identifies P17; GEO sample age field contains the apparent typo G17.
+GSE123945	WTNM2	Normoxia	0.32	FPKM			release_input/GSE123945_MWMSmm.genesfpkm.txt.gz	Official series design identifies P17; GEO sample age field contains the apparent typo G17.
+GSE123945	WTNM3	Normoxia	0.46	FPKM			release_input/GSE123945_MWMSmm.genesfpkm.txt.gz	Official series design identifies P17; GEO sample age field contains the apparent typo G17.
+GSE123945	WTNM4	Normoxia	1.14	FPKM			release_input/GSE123945_MWMSmm.genesfpkm.txt.gz	Official series design identifies P17; GEO sample age field contains the apparent typo G17.
+GSE123945	WTHP1	OIR	1.35	FPKM			release_input/GSE123945_MWMSmm.genesfpkm.txt.gz	WT hyperoxia/OIR arm; genotype intervention arms excluded.
+GSE123945	WTHP2	OIR	0.72	FPKM			release_input/GSE123945_MWMSmm.genesfpkm.txt.gz	WT hyperoxia/OIR arm; genotype intervention arms excluded.
+GSE123945	WTHP3	OIR	1.35	FPKM			release_input/GSE123945_MWMSmm.genesfpkm.txt.gz	WT hyperoxia/OIR arm; genotype intervention arms excluded.
+GSE123945	WTHP4	OIR	0.85	FPKM			release_input/GSE123945_MWMSmm.genesfpkm.txt.gz	WT hyperoxia/OIR arm; genotype intervention arms excluded.
+GSE124956	SAMPLE 10	Normoxia	7.216544594	author_normalized_log			release_input/GSE124956_normalized_data_matrix.txt.gz	Each deposited sample pools four retinas from two mice; sample is the analysis unit.
+GSE124956	SAMPLE 11	Normoxia	7.432405015	author_normalized_log			release_input/GSE124956_normalized_data_matrix.txt.gz	Each deposited sample pools four retinas from two mice; sample is the analysis unit.
+GSE124956	SAMPLE 12	Normoxia	7.301841212	author_normalized_log			release_input/GSE124956_normalized_data_matrix.txt.gz	Each deposited sample pools four retinas from two mice; sample is the analysis unit.
+GSE124956	SAMPLE 13	OIR	7.271576852	author_normalized_log			release_input/GSE124956_normalized_data_matrix.txt.gz	Untreated OIR arm; aflibercept arm excluded. Each sample pools four retinas from two mice.
+GSE124956	SAMPLE 14	OIR	7.343933102	author_normalized_log			release_input/GSE124956_normalized_data_matrix.txt.gz	Untreated OIR arm; aflibercept arm excluded. Each sample pools four retinas from two mice.
+GSE124956	SAMPLE 15	OIR	7.425655759	author_normalized_log			release_input/GSE124956_normalized_data_matrix.txt.gz	Untreated OIR arm; aflibercept arm excluded. Each sample pools four retinas from two mice.
+GSE132731	OIR_1	OIR	0.0	raw_counts	0.0	25727439.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	OIR_2	OIR	0.0	raw_counts	0.0	23784185.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	OIR_3	OIR	0.0	raw_counts	0.0	30001463.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	OIR_4	OIR	0.0	raw_counts	0.0	26406009.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	OIR_5	OIR	0.0	raw_counts	0.0	28676399.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	OIR_6	OIR	0.0	raw_counts	0.0	20771745.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	OIR_7	OIR	2.0	raw_counts	2.0	21480426.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	OIR_8	OIR	0.0	raw_counts	0.0	24108596.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	nonOIR_1	Normoxia	0.0	raw_counts	0.0	13591651.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	nonOIR_2	Normoxia	0.0	raw_counts	0.0	24560071.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	nonOIR_3	Normoxia	0.0	raw_counts	0.0	19162522.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	nonOIR_4	Normoxia	0.0	raw_counts	0.0	22983108.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	nonOIR_5	Normoxia	3.0	raw_counts	3.0	27972049.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	nonOIR_6	Normoxia	0.0	raw_counts	0.0	22556332.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	nonOIR_7	Normoxia	0.0	raw_counts	0.0	23949038.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE132731	nonOIR_8	Normoxia	0.0	raw_counts	0.0	23733035.0	release_input/GSE132731_data.csv.gz	Deposited sorted-retinal-microglia replicate; animal/eye mapping not fully public.
+GSE135844	GSM4035321	Normoxia	7.58738	microarray_log			release_input/GSE135844_series_matrix.txt.gz	No-treatment P17 arm; Adora2a probe 1460710_at selected by highest overall mean.
+GSE135844	GSM4035322	Normoxia	7.39927	microarray_log			release_input/GSE135844_series_matrix.txt.gz	No-treatment P17 arm; Adora2a probe 1460710_at selected by highest overall mean.
+GSE135844	GSM4035323	Normoxia	8.08979	microarray_log			release_input/GSE135844_series_matrix.txt.gz	No-treatment P17 arm; Adora2a probe 1460710_at selected by highest overall mean.
+GSE135844	GSM4035318	OIR	7.89785	microarray_log			release_input/GSE135844_series_matrix.txt.gz	No-treatment P17 arm; all cell-treatment arms excluded; probe 1460710_at.
+GSE135844	GSM4035319	OIR	7.6057	microarray_log			release_input/GSE135844_series_matrix.txt.gz	No-treatment P17 arm; all cell-treatment arms excluded; probe 1460710_at.
+GSE135844	GSM4035320	OIR	7.58546	microarray_log			release_input/GSE135844_series_matrix.txt.gz	No-treatment P17 arm; all cell-treatment arms excluded; probe 1460710_at.
+GSE158799	GSM4810567	Normoxia	111.0	raw_counts	111.0	35483173.0	release_input/GSM4810567_Control_retina_P17_1_reads.xlsx	P17 whole-retina deposited count library.
+GSE158799	GSM4810568	Normoxia	153.0	raw_counts	153.0	35238991.0	release_input/GSM4810568_Control_retina_P17_2_reads.xlsx	P17 whole-retina deposited count library.
+GSE158799	GSM4810569	Normoxia	92.0	raw_counts	92.0	27369064.0	release_input/GSM4810569_Control_retina_P17_3_reads.xlsx	P17 whole-retina deposited count library.
+GSE158799	GSM4810570	OIR	199.0	raw_counts	199.0	34996878.0	release_input/GSM4810570_OIR_retina_P17_1_reads.xlsx	P17 whole-retina deposited count library.
+GSE158799	GSM4810571	OIR	242.0	raw_counts	242.0	41716971.0	release_input/GSM4810571_OIR_retina_P17_2_reads.xlsx	P17 whole-retina deposited count library.
+GSE158799	GSM4810572	OIR	226.0	raw_counts	226.0	40053572.0	release_input/GSM4810572_OIR_retina_P17_3_reads.xlsx	P17 whole-retina deposited count library.
+GSE216676	GSM6685629	OIR	75.0	raw_counts	75.0	2065550.0	release_input/GSE216676.tsv.gz	WT P17 CD31-enriched retinal Drop-seq library pseudobulk; cells are not analysis units.
+GSE216676	GSM6685631	Normoxia	23.0	raw_counts	23.0	1488669.0	release_input/GSE216676.tsv.gz	WT P17 CD31-enriched retinal Drop-seq library pseudobulk; cells are not analysis units.
+GSE216676	GSM6685632	Normoxia	23.0	raw_counts	23.0	1220308.0	release_input/GSE216676.tsv.gz	WT P17 CD31-enriched retinal Drop-seq library pseudobulk; cells are not analysis units.
+GSE216676	GSM6685633	OIR	7.0	raw_counts	7.0	672455.0	release_input/GSE216676.tsv.gz	WT P17 CD31-enriched retinal Drop-seq library pseudobulk; cells are not analysis units.
+GSE216676	GSM6685635	OIR	56.0	raw_counts	56.0	2791811.0	release_input/GSE216676.tsv.gz	WT P17 CD31-enriched retinal Drop-seq library pseudobulk; cells are not analysis units.
+GSE230668	GSM7230931	Normoxia	6.572715	microarray_log			release_input/GSE230668_series_matrix.txt.gz	Untreated P17 control; P7 and treatment samples excluded.
+GSE230668	GSM7230933	Normoxia	6.854839	microarray_log			release_input/GSE230668_series_matrix.txt.gz	Untreated P17 control; P7 and treatment samples excluded.
+GSE230668	GSM7230932	OIR	6.883764	microarray_log			release_input/GSE230668_series_matrix.txt.gz	Untreated P17 OIR; PBS and ISOX DUAL treatment arms excluded.
+GSE230668	GSM7230934	OIR	6.820788	microarray_log			release_input/GSE230668_series_matrix.txt.gz	Untreated P17 OIR; PBS and ISOX DUAL treatment arms excluded.

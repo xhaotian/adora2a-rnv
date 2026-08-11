@@ -1,0 +1,2 @@
+analysis_set	k	included_accessions	pooled_hedges_g	standard_error	residual_df	p	ci95_low	ci95_high	tau2	I2	prediction_interval_low	prediction_interval_high	positive_studies
+STRICT_UNIT_CONFIRMED_SENSITIVITY	2	GSE234447;GSE315511	1.75909890909303	2.05567353784543	1	0.549393840292055	-24.3607099335076	27.8789077516937	7.7914488246463	92.1565884285573	-42.2880965694547	45.8062943876407	1

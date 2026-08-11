@@ -1,0 +1,7 @@
+donor	group	section	stratum	gene	n_spots	detection_fraction	mean_count	median_count	total_count	inference_boundary
+MNV_DONOR_1	MNV	CNV-A1	LESION_OVERLAP	ADORA2A	47	0.1276595744680851	0.1489361702127659	0.0	7.0	three sections from one donor; descriptive only
+MNV_DONOR_1	MNV	CNV-A1	NON_LESIONAL	ADORA2A	677	0.0295420974889217	0.0339734121122599	0.0	23.0	three sections from one donor; descriptive only
+MNV_DONOR_1	MNV	CNV-B1	LESION_OVERLAP	ADORA2A	55	0.2	0.2545454545454545	0.0	14.0	three sections from one donor; descriptive only
+MNV_DONOR_1	MNV	CNV-B1	NON_LESIONAL	ADORA2A	666	0.0375375375375375	0.0435435435435435	0.0	29.0	three sections from one donor; descriptive only
+MNV_DONOR_1	MNV	CNV-C1	LESION_OVERLAP	ADORA2A	42	0.1666666666666666	0.1666666666666666	0.0	7.0	three sections from one donor; descriptive only
+MNV_DONOR_1	MNV	CNV-C1	NON_LESIONAL	ADORA2A	621	0.0547504025764895	0.0676328502415458	0.0	42.0	three sections from one donor; descriptive only

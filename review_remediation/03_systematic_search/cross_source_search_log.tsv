@@ -1,0 +1,5 @@
+source	query	records	raw_file
+NCBI SRA	"(""oxygen induced retinopathy""[All Fields] OR ""oxygen-induced retinopathy""[All Fields] OR ""OIR retina""[All Fields]) AND ""Mus musculus""[Organism]"	137	release_input/ncbi_sra_esearch.json
+NCBI BIOPROJECT	"(""oxygen induced retinopathy""[All Fields] OR ""oxygen-induced retinopathy""[All Fields] OR ""OIR retina""[All Fields]) AND ""Mus musculus""[Organism]"	50	release_input/ncbi_bioproject_esearch.json
+Europe PMC	"(TITLE_ABS:""oxygen-induced retinopathy"" OR TITLE_ABS:""oxygen induced retinopathy"" OR TITLE_ABS:""OIR"") AND TITLE_ABS:retina* AND (TITLE_ABS:mouse OR TITLE_ABS:mice OR TITLE_ABS:murine) AND (TITLE_ABS:transcriptom* OR TITLE_ABS:""RNA-seq"" OR TITLE_ABS:""RNA sequencing"" OR TITLE_ABS:microarray OR TITLE_ABS:""gene expression"")"	144	release_input/europe_pmc_search.json
+EBI BioStudies	"""oxygen induced retinopathy"" OR ""oxygen-induced retinopathy"" OR ""OIR retina"""	338	release_input/ebi_biostudies_search.json

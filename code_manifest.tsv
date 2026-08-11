@@ -1,7 +1,0 @@
-path	role	public_input	principal_output
-analysis/mouse_meta_analysis.R	Mouse P17 OIR effect synthesis	Source_Data.xlsx:Mouse_meta_input	Meta summary and leave-one-study-out estimates
-analysis/apply_human_eligibility.py	Result-blind human eligibility implementation	Source_Data.xlsx:Human_eligibility_input	Eligibility decisions
-analysis/human_primary_models.py	Primary human donor-level models	Source_Data.xlsx:Human_model_input	Unadjusted and adjusted model results
-docs/DATA_ACCESS.md	Accession and data-access documentation	NA	NA
-docs/INPUT_OUTPUT_MAP.md	Reproducibility map	NA	NA
-docs/EXPECTED_RESULTS.md	Frozen-value comparison targets	NA	NA

@@ -1,0 +1,21 @@
+check	status	detail
+mouse_effect_count	PASS	16
+mouse_positive_count	PASS	
+mouse_pooled_g	PASS	1.12244963229513
+compartment_direction	PASS	
+human_models	PASS	18
+Fig1_600dpi	PASS	(600.0, 600.0)
+Fig1_LZW	PASS	5
+Fig1_size	PASS	961188
+Fig2_600dpi	PASS	(600.0, 600.0)
+Fig2_LZW	PASS	5
+Fig2_size	PASS	1130232
+Fig3_600dpi	PASS	(600.0, 600.0)
+Fig3_LZW	PASS	5
+Fig3_size	PASS	853552
+Fig4_600dpi	PASS	(600.0, 600.0)
+Fig4_LZW	PASS	5
+Fig4_size	PASS	1042438
+Fig5_600dpi	PASS	(600.0, 600.0)
+Fig5_LZW	PASS	5
+Fig5_size	PASS	603078

@@ -1,0 +1,24 @@
+study	sample_id	group	contrast	ADORA2A	facet_rule
+GSE102485	IIbp1	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIbp2	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIbp3	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIbp4	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IInp1	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IInp2	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IInp3	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIp1	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIp2	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIp3	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIp4	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIrbp1	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIrbp2	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIrp1	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIrp2	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIsp1	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	IIsp2	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	Ip1	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	Ip2	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	Ip3	PDR_NVM	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	Nr1	normal_retina	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	Nr2	normal_retina	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect
+GSE102485	Nr3	normal_retina	PDR_NVM_vs_normal_retina		separate dataset facet; no synthetic pooled human effect

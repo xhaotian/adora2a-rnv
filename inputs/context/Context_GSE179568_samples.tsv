@@ -1,0 +1,25 @@
+study	sample_id	group	contrast	ADORA2A	facet_rule
+GSE179568	Gliose_S1	macular_pucker	PDR_vs_macular_pucker	3.60111873671261	separate dataset facet; no synthetic pooled human effect
+GSE179568	Gliose_S10	macular_pucker	PDR_vs_macular_pucker	0.0	separate dataset facet; no synthetic pooled human effect
+GSE179568	Gliose_S2	macular_pucker	PDR_vs_macular_pucker	0.837894603752335	separate dataset facet; no synthetic pooled human effect
+GSE179568	Gliose_S3	macular_pucker	PDR_vs_macular_pucker	2.32433841762569	separate dataset facet; no synthetic pooled human effect
+GSE179568	Gliose_S4	macular_pucker	PDR_vs_macular_pucker	2.78516478434169	separate dataset facet; no synthetic pooled human effect
+GSE179568	Gliose_S5	macular_pucker	PDR_vs_macular_pucker	1.74104041243889	separate dataset facet; no synthetic pooled human effect
+GSE179568	Gliose_S6	macular_pucker	PDR_vs_macular_pucker	3.03009394168898	separate dataset facet; no synthetic pooled human effect
+GSE179568	Gliose_S7	macular_pucker	PDR_vs_macular_pucker	1.19903756639822	separate dataset facet; no synthetic pooled human effect
+GSE179568	Gliose_S8	macular_pucker	PDR_vs_macular_pucker	0.0	separate dataset facet; no synthetic pooled human effect
+GSE179568	Gliose_S9	macular_pucker	PDR_vs_macular_pucker	1.80629741324798	separate dataset facet; no synthetic pooled human effect
+GSE179568	PDR_S1	PDR_RNV	PDR_vs_macular_pucker	2.75631371711791	separate dataset facet; no synthetic pooled human effect
+GSE179568	PDR_S2	PDR_RNV	PDR_vs_macular_pucker	2.60440686432221	separate dataset facet; no synthetic pooled human effect
+GSE179568	PDR_S3	PDR_RNV	PDR_vs_macular_pucker	3.37337828861315	separate dataset facet; no synthetic pooled human effect
+GSE179568	PDR_S4	PDR_RNV	PDR_vs_macular_pucker	3.24680351189686	separate dataset facet; no synthetic pooled human effect
+GSE179568	PDR_S5	PDR_RNV	PDR_vs_macular_pucker	2.5748161469685	separate dataset facet; no synthetic pooled human effect
+GSE179568	PDR_S6	PDR_RNV	PDR_vs_macular_pucker	3.23064062461287	separate dataset facet; no synthetic pooled human effect
+GSE179568	PDR_S7	PDR_RNV	PDR_vs_macular_pucker	0.0	separate dataset facet; no synthetic pooled human effect
+GSE179568	ILM_S1	macular_hole	PDR_vs_macular_hole	1.8923209744725	separate dataset facet; no synthetic pooled human effect
+GSE179568	ILM_S2	macular_hole	PDR_vs_macular_hole	0.0	separate dataset facet; no synthetic pooled human effect
+GSE179568	ILM_S3	macular_hole	PDR_vs_macular_hole	0.0	separate dataset facet; no synthetic pooled human effect
+GSE179568	ILM_S4	macular_hole	PDR_vs_macular_hole	2.82075676683823	separate dataset facet; no synthetic pooled human effect
+GSE179568	ILM_S5	macular_hole	PDR_vs_macular_hole	0.0	separate dataset facet; no synthetic pooled human effect
+GSE179568	ILM_S6	macular_hole	PDR_vs_macular_hole	0.0	separate dataset facet; no synthetic pooled human effect
+GSE179568	ILM_S7	macular_hole	PDR_vs_macular_hole	0.0	separate dataset facet; no synthetic pooled human effect

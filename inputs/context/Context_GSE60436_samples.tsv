@@ -1,0 +1,10 @@
+sample_id	group	ADORA2A	record_type	donor_independence_boundary
+GSM1479904	normal_retina	-0.20919418	deposited_sample_value	three deposited samples per group; donor independence cannot be fully confirmed from public metadata
+GSM1479905	normal_retina	0.0	deposited_sample_value	three deposited samples per group; donor independence cannot be fully confirmed from public metadata
+GSM1479906	normal_retina	-0.09561825	deposited_sample_value	three deposited samples per group; donor independence cannot be fully confirmed from public metadata
+GSM1479907	active_FVM	0.84405375	deposited_sample_value	three deposited samples per group; donor independence cannot be fully confirmed from public metadata
+GSM1479908	active_FVM	1.1467853	deposited_sample_value	three deposited samples per group; donor independence cannot be fully confirmed from public metadata
+GSM1479909	active_FVM	0.56109476	deposited_sample_value	three deposited samples per group; donor independence cannot be fully confirmed from public metadata
+GSM1479910	inactive_FVM	0.000954	deposited_sample_value	three deposited samples per group; donor independence cannot be fully confirmed from public metadata
+GSM1479911	inactive_FVM	-0.078149796	deposited_sample_value	three deposited samples per group; donor independence cannot be fully confirmed from public metadata
+GSM1479912	inactive_FVM	-0.15018177	deposited_sample_value	three deposited samples per group; donor independence cannot be fully confirmed from public metadata

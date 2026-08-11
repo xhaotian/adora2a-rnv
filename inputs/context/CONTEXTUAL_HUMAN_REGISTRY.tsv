@@ -1,0 +1,11 @@
+context	tissue	biological_unit	contrast	display_metric	boundary	pooling_action
+GSE160306	retina	donor; repeated regions	ordered stage and stage-by-region	mixed-model coefficient	not pure PDR	SEPARATE_CONTEXT_NO_POOLING
+GSE60436	normal retina / PDR FVM	deposited sample	active versus inactive FVM	limma coefficient and raw values	donor independence not fully recoverable	SEPARATE_CONTEXT_NO_POOLING
+GSE276892	vitreous hyalocytes	patient	PDR / MH / MP	patient distribution	different compartment	SEPARATE_CONTEXT_NO_POOLING
+GSE94019	CD31-enriched FVM/control	deposited sample	PDR FVM versus control CD31	limma-voom coefficient	9 versus 2; separate context	SEPARATE_CONTEXT_NO_POOLING
+GSE307925	PDR CD31-high/low	patient sample	anti-VEGF treated versus untreated	DESeq2 coefficient	treatment context; not disease-control	SEPARATE_CONTEXT_NO_POOLING
+GSE179568	PDR neovascular membrane	deposited sample	PDR versus macular pucker/hole	limma coefficient	different comparators	SEPARATE_CONTEXT_NO_POOLING
+GSE102485	RNV membrane/retina	deposited sample; patient mapping unresolved	PDR NVM versus normal retina	not estimable for ADORA2A	target absent after filtering	SEPARATE_CONTEXT_NO_POOLING
+GSE146887	CNV membrane versus RPE/choroid	sample	CNV versus control	raw transformed value/Hedges g	tissue mismatch; GSE163090 duplicate	SEPARATE_CONTEXT_NO_POOLING
+2026_MNV	retina/RPE/choroid cell types	donor pseudobulk in published table	MNV versus control	published logFC/FDR	only two MNV donors in vascular tests	SEPARATE_CONTEXT_NO_POOLING
+GSE234047	spatial MNV sections	section/spot nested in one donor	lesion-overlap versus non-lesional	detection fraction	three sections from one donor; descriptive only	SEPARATE_CONTEXT_NO_POOLING

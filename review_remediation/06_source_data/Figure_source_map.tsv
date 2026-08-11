@@ -1,0 +1,11 @@
+display	content	source_sheets
+Fig 1	PRISMA 2020 flow	Search_all_sources; PRISMA_counts; Cohort_overlap_audit
+Fig 2A	Mouse primary forest and prediction interval	Mouse_study_effects; Mouse_meta_results
+Fig 2B	Mouse leave-one-accession-out	Mouse_LOO
+Fig 2C	Compartment sensitivity	Compartment_meta; Mouse_compartments
+Fig 3A	Human donor scatter	Human_model_input
+Fig 3B	Human M0/M1/M2 coefficients	Human_model_results
+Fig 3C	Leave-one-donor-out	Human_LODO
+Fig 3D	Identification diagnostics	Human_model_results
+Fig 4	Separate contextual human evidence	All Context_* sheets
+Fig 5	Integrated evidence boundary	Mouse_meta_results; Human_model_results; all Context_* sheets
