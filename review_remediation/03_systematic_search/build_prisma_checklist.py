@@ -4,7 +4,7 @@ from pathlib import Path
 from docx import Document
 from docx.shared import Inches
 
-PROJECT=Path(__file__).resolve().parents[2];FINAL=PROJECT/"final_submission"
+PROJECT=Path(__file__).resolve().parents[2];ROOT=PROJECT/"review_remediation";FINAL=ROOT/"03_systematic_search"
 items=[
 ("1","Title","Identify the report as a systematic review.","Title; Abstract"),
 ("2","Abstract","PRISMA abstract elements.","Abstract"),
@@ -35,8 +35,8 @@ items=[
 ("20a","Synthesis contributors","Summarize contributing studies.","Results: mouse synthesis"),
 ("20b","Statistical synthesis","Present pooled effect and heterogeneity.","Results; Fig 2"),
 ("20c","Heterogeneity investigations","Present leave-one-out results.","Fig 2B; Source Data"),
-("20d","Sensitivity results","Present strict-unit sensitivity.","Results; Fig 2C"),
-("21","Reporting biases","Present assessments of reporting bias.","Methods; Results; S6 Fig: descriptive funnel plot and exploratory Pustejovsky–Rodgers diagnostic"),
+("20d","Sensitivity results","Present strict-unit sensitivity.","Results; Fig 2D"),
+("21","Reporting biases","Present assessments of reporting bias.","Methods; Results; S5 Fig: descriptive funnel plot and exploratory Pustejovsky–Rodgers diagnostic"),
 ("22","Certainty","Present evidence limitations.","Discussion"),
 ("23a","Interpretation","Interpret results in context.","Discussion"),
 ("23b","Evidence limitations","Discuss limitations of included evidence.","Discussion"),
@@ -56,5 +56,5 @@ for row in items:
  c=t.add_row().cells
  for i,x in enumerate(row):c[i].text=x
 d.sections[0].left_margin=Inches(.55);d.sections[0].right_margin=Inches(.55)
-FINAL.mkdir(parents=True,exist_ok=True);d.save(FINAL/"PRISMA_Checklist_FINAL.docx")
-print(FINAL/"PRISMA_Checklist_FINAL.docx")
+FINAL.mkdir(parents=True,exist_ok=True);d.save(FINAL/"PRISMA_Checklist_visual.docx")
+print(FINAL/"PRISMA_Checklist_visual.docx")

@@ -8,6 +8,7 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
+from matplotlib.legend import Legend
 from matplotlib.text import Text
 import pandas as pd
 from PIL import Image, ImageDraw
@@ -133,7 +134,8 @@ def audit_figure(fig, figure_name: str) -> pd.DataFrame:
         padding = min(tb.x0 - pb.x0, pb.x1 - tb.x1, tb.y0 - pb.y0, pb.y1 - tb.y1)
         add(f"box_padding:{name}", tb, "BOX_TEXT_PADDING_BELOW_1.5_MM", padding >= required_padding)
 
-    for legend, ax, xs, ys, name, radius_pt in fig.__dict__.get("_qa_legend_data", []):
+    registered_legends = fig.__dict__.get("_qa_legend_data", [])
+    for legend, ax, xs, ys, name, radius_pt in registered_legends:
         lb = legend.get_window_extent(renderer)
         radius_px = radius_pt * fig.dpi / 72.0
         overlaps = False
@@ -143,6 +145,14 @@ def audit_figure(fig, figure_name: str) -> pd.DataFrame:
                 overlaps = True
                 break
         add(f"legend_data:{name}", lb, "LEGEND_OVERLAPS_DATA_POINT", not overlaps)
+
+    registered_ids = {id(item[0]) for item in registered_legends}
+    for index, legend in enumerate(fig.findobj(Legend)):
+        if not legend.get_visible() or id(legend) in registered_ids:
+            continue
+        lb = legend.get_window_extent(renderer)
+        intersects_plotting_area = any(_intersects(lb, ax.bbox) for ax in axes)
+        add(f"legend_axes:{index}", lb, "LEGEND_OVERLAPS_PLOTTING_AREA", not intersects_plotting_area)
 
     if not rows:
         rows.append({"figure": figure_name, "element": "figure", "bbox": _bbox_string(canvas),

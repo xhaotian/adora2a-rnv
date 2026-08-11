@@ -6,7 +6,7 @@ import pandas as pd
 from openpyxl.styles import Font,PatternFill
 from openpyxl.utils import get_column_letter
 
-PROJECT=Path(__file__).resolve().parents[2];ROOT=PROJECT/"review_remediation";FINAL=PROJECT/"final_submission"
+PROJECT=Path(__file__).resolve().parents[2];ROOT=PROJECT/"review_remediation";FINAL=ROOT/"09_release"
 tables={
  "S1_screening":ROOT/"03_systematic_search/Search_and_Screening_Log.tsv",
  "S1_compartments":ROOT/"02_mouse_compartment_audit/MOUSE_COMPARTMENT_REGISTRY.tsv",
@@ -42,7 +42,7 @@ def readerize(value):
     return value
 def clean(df): return df.map(readerize)
 
-with pd.ExcelWriter(FINAL/"Supplementary_Tables_FINAL.xlsx",engine="openpyxl") as w:
+with pd.ExcelWriter(FINAL/"Supplementary_Tables_visual.xlsx",engine="openpyxl") as w:
     pd.DataFrame({"guide":["S1: dataset eligibility and biological units","S2: full statistical results and diagnostics","S3: figure and claim source mappings"]}).to_excel(w,sheet_name="README",index=False)
     for sheet,path in tables.items():
         if path.exists(): clean(pd.read_csv(path,sep="\t")).to_excel(w,sheet_name=sheet[:31],index=False)
@@ -50,4 +50,4 @@ with pd.ExcelWriter(FINAL/"Supplementary_Tables_FINAL.xlsx",engine="openpyxl") a
         ws.freeze_panes="A2";ws.auto_filter.ref=ws.dimensions
         for c in ws[1]: c.font=Font(bold=True,color="FFFFFF");c.fill=PatternFill("solid",fgColor="1F4E78")
         for i in range(1,min(ws.max_column,50)+1): ws.column_dimensions[get_column_letter(i)].width=18
-print(FINAL/"Supplementary_Tables_FINAL.xlsx")
+print(FINAL/"Supplementary_Tables_visual.xlsx")
