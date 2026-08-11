@@ -1,0 +1,28 @@
+figure	element	bbox	violation_type	status
+S2	text:0:ADORA2A coefficient (95% CI)	329.8,49.7,502.4,61.7	NONE	PASS
+S2	font:0:ADORA2A coefficient (95% CI)	329.8,49.7,502.4,61.7	NONE	PASS
+S2	text:1:−10	130.0,67.3,148.9,77.3	NONE	PASS
+S2	font:1:−10	130.0,67.3,148.9,77.3	NONE	PASS
+S2	text:2:−5	286.8,67.3,299.5,77.3	NONE	PASS
+S2	font:2:−5	286.8,67.3,299.5,77.3	NONE	PASS
+S2	text:3:0	443.8,67.3,449.9,77.3	NONE	PASS
+S2	font:3:0	443.8,67.3,449.9,77.3	NONE	PASS
+S2	text:4:5	597.5,67.3,603.6,77.3	NONE	PASS
+S2	font:4:5	597.5,67.3,603.6,77.3	NONE	PASS
+S2	text:5:M0	99.1,311.4,114.4,321.4	NONE	PASS
+S2	font:5:M0	99.1,311.4,114.4,321.4	NONE	PASS
+S2	text:6:M1	99.0,207.1,114.4,217.1	NONE	PASS
+S2	font:6:M1	99.0,207.1,114.4,217.1	NONE	PASS
+S2	text:7:M2	99.0,102.9,114.4,112.9	NONE	PASS
+S2	font:7:M2	99.0,102.9,114.4,112.9	NONE	PASS
+S2	text:8:Higher-cell-count stratum (≥20 cells)	218.8,359.7,398.3,369.7	NONE	PASS
+S2	font:8:Higher-cell-count stratum (≥20 cells)	218.8,359.7,398.3,369.7	NONE	PASS
+S2	text:9:Expanded stratum (including <20 cells)	451.6,359.7,644.5,369.7	NONE	PASS
+S2	font:9:Expanded stratum (including <20 cells)	451.6,359.7,644.5,369.7	NONE	PASS
+S2	tick_neighbor:axes0:0:−10	130.0,67.3,148.9,77.3	NONE	PASS
+S2	tick_neighbor:axes0:1:−5	286.8,67.3,299.5,77.3	NONE	PASS
+S2	tick_neighbor:axes0:2:0	443.8,67.3,449.9,77.3	NONE	PASS
+S2	tick_neighbor:axes0:3:5	597.5,67.3,603.6,77.3	NONE	PASS
+S2	tick_neighbor:axes0:4:M0	99.1,311.4,114.4,321.4	NONE	PASS
+S2	tick_neighbor:axes0:5:M1	99.0,207.1,114.4,217.1	NONE	PASS
+S2	tick_neighbor:axes0:6:M2	99.0,102.9,114.4,112.9	NONE	PASS

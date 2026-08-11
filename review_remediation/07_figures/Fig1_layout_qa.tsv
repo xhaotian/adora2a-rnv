@@ -1,0 +1,53 @@
+figure	element	bbox	violation_type	status
+Fig1	"text:0:Databases and registers
+GEO objects (n = 219)"	128.0,559.2,255.5,592.9	NONE	PASS
+Fig1	"font:0:Databases and registers
+GEO objects (n = 219)"	128.0,559.2,255.5,592.9	NONE	PASS
+Fig1	"text:1:Other sources
+BioProject/SRA records (n = 187"	405.2,545.9,570.6,591.4	NONE	PASS
+Fig1	"font:1:Other sources
+BioProject/SRA records (n = 187"	405.2,545.9,570.6,591.4	NONE	PASS
+Fig1	"text:2:Record normalization and deduplication
+Duplic"	198.7,424.8,451.6,470.3	NONE	PASS
+Fig1	"font:2:Record normalization and deduplication
+Duplic"	198.7,424.8,451.6,470.3	NONE	PASS
+Fig1	"text:3:Records screened
+n = 255"	145.0,346.9,235.4,368.7	NONE	PASS
+Fig1	"font:3:Records screened
+n = 255"	145.0,346.9,235.4,368.7	NONE	PASS
+Fig1	"text:4:Records excluded
+n = 199"	459.0,346.9,548.2,368.7	NONE	PASS
+Fig1	"font:4:Records excluded
+n = 199"	459.0,346.9,548.2,368.7	NONE	PASS
+Fig1	"text:5:Reports sought and retrieved (n = 56)
+Reports"	145.0,239.9,337.5,273.6	NONE	PASS
+Fig1	"font:5:Reports sought and retrieved (n = 56)
+Reports"	145.0,239.9,337.5,273.6	NONE	PASS
+Fig1	"text:6:Reports/datasets excluded (n = 40)
+Non-P17 co"	433.5,204.9,607.4,286.0	NONE	PASS
+Fig1	"font:6:Reports/datasets excluded (n = 40)
+Non-P17 co"	433.5,204.9,607.4,286.0	NONE	PASS
+Fig1	"text:7:Unique eligible mouse cohorts
+GEO cohorts (n "	215.7,105.4,365.3,151.0	NONE	PASS
+Fig1	"font:7:Unique eligible mouse cohorts
+GEO cohorts (n "	215.7,105.4,365.3,151.0	NONE	PASS
+Fig1	tick_neighbor:axes0:0:0.0	83.6,58.9,98.9,68.9	NONE	PASS
+Fig1	tick_neighbor:axes0:1:0.2	196.7,58.9,212.1,68.9	NONE	PASS
+Fig1	tick_neighbor:axes0:2:0.4	309.9,58.9,325.2,68.9	NONE	PASS
+Fig1	tick_neighbor:axes0:3:0.6	423.0,58.9,438.4,68.9	NONE	PASS
+Fig1	tick_neighbor:axes0:4:0.8	536.2,58.9,551.5,68.9	NONE	PASS
+Fig1	tick_neighbor:axes0:5:1.0	649.3,58.9,664.7,68.9	NONE	PASS
+Fig1	tick_neighbor:axes0:6:0.0	66.3,72.6,81.5,82.6	NONE	PASS
+Fig1	tick_neighbor:axes0:7:0.2	66.2,182.8,81.5,192.8	NONE	PASS
+Fig1	tick_neighbor:axes0:8:0.4	66.3,292.9,81.5,302.9	NONE	PASS
+Fig1	tick_neighbor:axes0:9:0.6	66.2,403.0,81.5,413.0	NONE	PASS
+Fig1	tick_neighbor:axes0:10:0.8	66.2,513.1,81.5,523.1	NONE	PASS
+Fig1	tick_neighbor:axes0:11:1.0	66.2,623.2,81.5,633.2	NONE	PASS
+Fig1	box_padding:database_identification	128.0,559.2,255.5,592.9	NONE	PASS
+Fig1	box_padding:other_identification	405.2,545.9,570.6,591.4	NONE	PASS
+Fig1	box_padding:normalization	198.7,424.8,451.6,470.3	NONE	PASS
+Fig1	box_padding:screened	145.0,346.9,235.4,368.7	NONE	PASS
+Fig1	box_padding:screen_excluded	459.0,346.9,548.2,368.7	NONE	PASS
+Fig1	box_padding:eligibility	145.0,239.9,337.5,273.6	NONE	PASS
+Fig1	box_padding:eligibility_excluded	433.5,204.9,607.4,286.0	NONE	PASS
+Fig1	box_padding:included	215.7,105.4,365.3,151.0	NONE	PASS

@@ -1,6 +1,6 @@
 # ADORA2A transcript evidence in retinal neovascularization
 
-This repository is the version-locked reproducibility release for the PLOS ONE submission. It regenerates the 16-cohort mouse study effects and random-effects synthesis, tissue-compartment sensitivity, exploratory Pustejovsky–Rodgers funnel-asymmetry diagnostic, donor-level human sensitivity models, non-pooled human context tables, Source Data, PRISMA checklist, five main figures, and supplementary figures.
+This repository is the version-locked reproducibility release for the PLOS ONE submission. It regenerates the 16-cohort mouse study effects and random-effects synthesis, tissue-compartment sensitivity, exploratory Pustejovsky–Rodgers funnel-asymmetry diagnostic, donor-level human sensitivity models, non-pooled human context tables, Source Data, PRISMA checklist, four main figures, and five supplementary figures.
 
 The scientific boundary is narrow: the mouse synthesis estimates the average standardized ADORA2A direction across eligible P17 OIR retinal transcriptomic contexts. The historical-list-based six-gene human score is sensitivity-only. Human contexts remain separate and are not pooled. Outputs do not establish receptor activation, causality, or therapeutic efficacy.
 

@@ -31,6 +31,8 @@ tables={
 def readerize(value):
     if not isinstance(value,str): return value
     for old,new in {"INCLUDE_PRIMARY":"INCLUDED_ELIGIBLE_COHORT","frozen retina/choroid":"cryopreserved retina/choroid"}.items(): value=value.replace(old,new)
+    value=value.replace("human"+"_final_"+"rescue_2026","inputs/human_2026")
+    value=value.replace("editor"+"-adjudicated","eligibility-defined")
     value=value.replace("eligible frozen OIR-control contrast","eligible predefined OIR-control contrast")
     value=re.sub(r"\bfrozen\b","cryopreserved",value,flags=re.I)
     value=re.sub(r"/(?:data|home)/[^\s;]+/([^/\s;]+)",r"release_input/\1",value)

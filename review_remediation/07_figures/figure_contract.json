@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "mode": "targeted_candidate_polish",
+  "backend": "python_matplotlib",
+  "output": {
+    "width_in": 7.3,
+    "dpi": 600,
+    "tiff_compression": "lzw",
+    "review_dpi": 180
+  },
+  "style": {
+    "font_family": "Arial",
+    "font_fallback": "Arimo",
+    "panel_label_pt": 11,
+    "panel_heading_pt": 9,
+    "axis_label_pt": 9,
+    "tick_pt": 8,
+    "legend_pt": 8,
+    "annotation_pt": 8,
+    "line_width_pt": 0.9,
+    "marker_size_pt": 4.8,
+    "reference_line_color": "#777777",
+    "reference_line_width_pt": 0.8
+  },
+  "qa": {
+    "minimum_font_pt": 8,
+    "box_text_padding_mm": 1.5,
+    "canvas_tolerance_px": 1,
+    "panel_label_x": -0.14,
+    "panel_label_y": 1.075
+  },
+  "figures": {
+    "Fig1": {
+      "height_in": 7.15,
+      "grid": "PRISMA flow",
+      "panels": {"flow": {"role": "dataset identification", "plot_type": "flow diagram"}},
+      "preserve": ["existing colour family", "independent main figure"],
+      "forbid": ["whole-figure title", "search-date subtitle", "floating arrows", "invented counts"]
+    },
+    "Fig2": {
+      "height_in": 8.55,
+      "grid": "top full-width A; bottom B/C/D",
+      "panels": {
+        "A": {"role": "primary mouse evidence", "plot_type": "forest"},
+        "B": {"role": "robustness", "plot_type": "leave-one-cohort-out"},
+        "C": {"role": "sensitivity", "plot_type": "compartment estimates"},
+        "D": {"role": "sensitivity", "plot_type": "strict-unit estimate"}
+      },
+      "preserve": ["forest", "LOO", "pooled diamond", "prediction interval"],
+      "forbid": ["compartment colour encoding", "long explanatory footer", "shared x-axis for strict estimate"]
+    },
+    "Fig3": {
+      "height_in": 7.25,
+      "grid": "2x2",
+      "panels": {
+        "A": {"role": "human donor sensitivity", "plot_type": "scatter"},
+        "B": {"role": "model sensitivity", "plot_type": "coefficient forest"},
+        "C": {"role": "influence", "plot_type": "M0 LODO"},
+        "D": {"role": "identification", "plot_type": "diagnostic table"}
+      },
+      "preserve": ["2x2", "dataset marker semantics", "M0 LODO only"],
+      "forbid": ["pooled regression line", "Case/Sample donor labels", "long diagnostic prose"]
+    },
+    "Fig4": {
+      "height_in": 8.55,
+      "grid": "3x2",
+      "panels": {
+        "A": {"role": "context", "plot_type": "coefficient forest"},
+        "B": {"role": "context", "plot_type": "sample scatter"},
+        "C": {"role": "context", "plot_type": "sample scatter"},
+        "D": {"role": "context", "plot_type": "coefficient forest"},
+        "E": {"role": "context", "plot_type": "cell-type effect display"},
+        "F": {"role": "descriptive context", "plot_type": "paired section display"}
+      },
+      "preserve": ["3x2", "all context-specific metrics", "no pooling"],
+      "forbid": ["whole-figure title", "cross-dataset coefficient comparison", "freehand panel labels"]
+    },
+    "Supplementary": {
+      "height_in": 7.0,
+      "pages": 5,
+      "routing": ["sample examples", "expanded donor sensitivity", "full LODO", "signature sensitivity", "funnel diagnostic"],
+      "forbid": ["redundant GEO screening page", "Case/Sample donor labels", "machine signature names"]
+    }
+  }
+}

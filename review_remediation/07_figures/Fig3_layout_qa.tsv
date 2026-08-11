@@ -1,0 +1,179 @@
+figure	element	bbox	violation_type	status
+Fig3	text:panel_label:A:A	61.8,691.8,72.8,705.8	NONE	PASS
+Fig3	font:panel_label:A:A	61.8,691.8,72.8,705.8	NONE	PASS
+Fig3	text:1:ADORA2A abundance (z)	141.3,403.3,284.6,415.3	NONE	PASS
+Fig3	font:1:ADORA2A abundance (z)	141.3,403.3,284.6,415.3	NONE	PASS
+Fig3	text:2:−1.5	61.2,420.9,83.1,430.9	NONE	PASS
+Fig3	font:2:−1.5	61.2,420.9,83.1,430.9	NONE	PASS
+Fig3	text:3:−1.0	107.1,420.9,129.0,430.9	NONE	PASS
+Fig3	font:3:−1.0	107.1,420.9,129.0,430.9	NONE	PASS
+Fig3	text:4:−0.5	153.0,420.9,174.8,430.9	NONE	PASS
+Fig3	font:4:−0.5	153.0,420.9,174.8,430.9	NONE	PASS
+Fig3	text:5:0.0	202.1,420.9,217.4,430.9	NONE	PASS
+Fig3	font:5:0.0	202.1,420.9,217.4,430.9	NONE	PASS
+Fig3	text:6:0.5	248.0,420.9,263.3,430.9	NONE	PASS
+Fig3	font:6:0.5	248.0,420.9,263.3,430.9	NONE	PASS
+Fig3	text:7:1.0	293.8,420.9,309.2,430.9	NONE	PASS
+Fig3	font:7:1.0	293.8,420.9,309.2,430.9	NONE	PASS
+Fig3	text:8:1.5	339.7,420.9,355.1,430.9	NONE	PASS
+Fig3	font:8:1.5	339.7,420.9,355.1,430.9	NONE	PASS
+Fig3	text:9:Six-gene donor score (sensitivity)	45.7,464.6,57.7,650.2	NONE	PASS
+Fig3	font:9:Six-gene donor score (sensitivity)	45.7,464.6,57.7,650.2	NONE	PASS
+Fig3	text:10:−2.0	63.3,432.2,85.2,442.2	NONE	PASS
+Fig3	font:10:−2.0	63.3,432.2,85.2,442.2	NONE	PASS
+Fig3	text:11:−1.5	63.3,467.0,85.2,477.0	NONE	PASS
+Fig3	font:11:−1.5	63.3,467.0,85.2,477.0	NONE	PASS
+Fig3	text:12:−1.0	63.3,501.7,85.2,511.7	NONE	PASS
+Fig3	font:12:−1.0	63.3,501.7,85.2,511.7	NONE	PASS
+Fig3	text:13:−0.5	63.4,536.5,85.2,546.5	NONE	PASS
+Fig3	font:13:−0.5	63.4,536.5,85.2,546.5	NONE	PASS
+Fig3	text:14:0.0	69.9,571.3,85.2,581.3	NONE	PASS
+Fig3	font:14:0.0	69.9,571.3,85.2,581.3	NONE	PASS
+Fig3	text:15:0.5	69.9,606.0,85.2,616.0	NONE	PASS
+Fig3	font:15:0.5	69.9,606.0,85.2,616.0	NONE	PASS
+Fig3	text:16:1.0	69.8,640.8,85.2,650.8	NONE	PASS
+Fig3	font:16:1.0	69.8,640.8,85.2,650.8	NONE	PASS
+Fig3	text:17:1.5	69.8,675.6,85.2,685.6	NONE	PASS
+Fig3	font:17:1.5	69.8,675.6,85.2,685.6	NONE	PASS
+Fig3	"text:panel_title:A:Higher-cell-count PDR donors
+(≥20 endothelial"	94.9,683.8,273.5,709.5	NONE	PASS
+Fig3	"font:panel_title:A:Higher-cell-count PDR donors
+(≥20 endothelial"	94.9,683.8,273.5,709.5	NONE	PASS
+Fig3	text:19:GSE165784	259.4,466.2,319.9,476.2	NONE	PASS
+Fig3	font:19:GSE165784	259.4,466.2,319.9,476.2	NONE	PASS
+Fig3	text:20:GSE245561	259.4,451.7,319.9,461.7	NONE	PASS
+Fig3	font:20:GSE245561	259.4,451.7,319.9,461.7	NONE	PASS
+Fig3	text:panel_label:B:B	420.7,691.8,431.7,705.8	NONE	PASS
+Fig3	font:panel_label:B:B	420.7,691.8,431.7,705.8	NONE	PASS
+Fig3	text:22:ADORA2A coefficient (95% CI)	485.5,403.3,658.1,415.3	NONE	PASS
+Fig3	font:22:ADORA2A coefficient (95% CI)	485.5,403.3,658.1,415.3	NONE	PASS
+Fig3	text:23:−15	384.6,420.9,403.5,430.9	NONE	PASS
+Fig3	font:23:−15	384.6,420.9,403.5,430.9	NONE	PASS
+Fig3	text:24:−10	450.0,420.9,468.8,430.9	NONE	PASS
+Fig3	font:24:−10	450.0,420.9,468.8,430.9	NONE	PASS
+Fig3	text:25:−5	518.5,420.9,531.1,430.9	NONE	PASS
+Fig3	font:25:−5	518.5,420.9,531.1,430.9	NONE	PASS
+Fig3	text:26:0	587.1,420.9,593.2,430.9	NONE	PASS
+Fig3	font:26:0	587.1,420.9,593.2,430.9	NONE	PASS
+Fig3	text:27:5	652.4,420.9,658.6,430.9	NONE	PASS
+Fig3	font:27:5	652.4,420.9,658.6,430.9	NONE	PASS
+Fig3	text:28:10	714.7,420.9,727.0,430.9	NONE	PASS
+Fig3	font:28:10	714.7,420.9,727.0,430.9	NONE	PASS
+Fig3	text:29:M0	428.8,657.6,444.0,667.6	NONE	PASS
+Fig3	font:29:M0	428.8,657.6,444.0,667.6	NONE	PASS
+Fig3	text:30:M1	428.7,551.4,444.0,561.4	NONE	PASS
+Fig3	font:30:M1	428.7,551.4,444.0,561.4	NONE	PASS
+Fig3	text:31:M2	428.7,445.2,444.0,455.2	NONE	PASS
+Fig3	font:31:M2	428.7,445.2,444.0,455.2	NONE	PASS
+Fig3	text:panel_title:B:Sensitivity-model estimates	453.8,683.8,618.4,695.8	NONE	PASS
+Fig3	font:panel_title:B:Sensitivity-model estimates	453.8,683.8,618.4,695.8	NONE	PASS
+Fig3	text:panel_label:C:C	61.8,327.3,72.8,341.3	NONE	PASS
+Fig3	font:panel_label:C:C	61.8,327.3,72.8,341.3	NONE	PASS
+Fig3	text:34:M0 coefficient after donor omission	115.6,38.8,310.3,50.8	NONE	PASS
+Fig3	font:34:M0 coefficient after donor omission	115.6,38.8,310.3,50.8	NONE	PASS
+Fig3	text:35:−1.5	64.8,56.4,86.7,66.4	NONE	PASS
+Fig3	font:35:−1.5	64.8,56.4,86.7,66.4	NONE	PASS
+Fig3	text:36:−1.0	103.0,56.4,124.9,66.4	NONE	PASS
+Fig3	font:36:−1.0	103.0,56.4,124.9,66.4	NONE	PASS
+Fig3	text:37:−0.5	141.3,56.4,163.0,66.4	NONE	PASS
+Fig3	font:37:−0.5	141.3,56.4,163.0,66.4	NONE	PASS
+Fig3	text:38:0.0	182.7,56.4,198.0,66.4	NONE	PASS
+Fig3	font:38:0.0	182.7,56.4,198.0,66.4	NONE	PASS
+Fig3	text:39:0.5	220.9,56.4,236.2,66.4	NONE	PASS
+Fig3	font:39:0.5	220.9,56.4,236.2,66.4	NONE	PASS
+Fig3	text:40:1.0	259.0,56.4,274.4,66.4	NONE	PASS
+Fig3	font:40:1.0	259.0,56.4,274.4,66.4	NONE	PASS
+Fig3	text:41:1.5	297.2,56.4,312.6,66.4	NONE	PASS
+Fig3	font:41:1.5	297.2,56.4,312.6,66.4	NONE	PASS
+Fig3	text:42:2.0	335.4,56.4,350.8,66.4	NONE	PASS
+Fig3	font:42:2.0	335.4,56.4,350.8,66.4	NONE	PASS
+Fig3	text:43:GSM5277737	16.9,80.7,85.2,90.7	NONE	PASS
+Fig3	font:43:GSM5277737	16.9,80.7,85.2,90.7	NONE	PASS
+Fig3	text:44:GSM5690479	17.1,116.1,85.2,126.1	NONE	PASS
+Fig3	font:44:GSM5690479	17.1,116.1,85.2,126.1	NONE	PASS
+Fig3	text:45:GSM7845001	16.9,151.5,85.2,161.5	NONE	PASS
+Fig3	font:45:GSM7845001	16.9,151.5,85.2,161.5	NONE	PASS
+Fig3	text:46:GSM7845000	17.1,186.9,85.2,196.9	NONE	PASS
+Fig3	font:46:GSM7845000	17.1,186.9,85.2,196.9	NONE	PASS
+Fig3	text:47:GSM7845003	16.9,222.3,85.2,232.3	NONE	PASS
+Fig3	font:47:GSM7845003	16.9,222.3,85.2,232.3	NONE	PASS
+Fig3	text:48:GSM7845002	16.9,257.7,85.2,267.7	NONE	PASS
+Fig3	font:48:GSM7845002	16.9,257.7,85.2,267.7	NONE	PASS
+Fig3	text:49:GSM5690478	16.9,293.1,85.2,303.1	NONE	PASS
+Fig3	font:49:GSM5690478	16.9,293.1,85.2,303.1	NONE	PASS
+Fig3	text:panel_title:C:M0 leave-one-donor-out	94.9,319.3,236.4,331.3	NONE	PASS
+Fig3	font:panel_title:C:M0 leave-one-donor-out	94.9,319.3,236.4,331.3	NONE	PASS
+Fig3	text:panel_label:D:D	420.7,327.3,431.7,341.3	NONE	PASS
+Fig3	font:panel_label:D:D	420.7,327.3,431.7,341.3	NONE	PASS
+Fig3	text:52:M2: technical sensitivity	513.3,103.8,630.3,113.8	NONE	PASS
+Fig3	font:52:M2: technical sensitivity	513.3,103.8,630.3,113.8	NONE	PASS
+Fig3	text:53:0.0	428.8,70.1,444.0,80.1	NONE	PASS
+Fig3	font:53:0.0	428.8,70.1,444.0,80.1	NONE	PASS
+Fig3	text:54:0.2	428.7,116.9,444.0,126.9	NONE	PASS
+Fig3	font:54:0.2	428.7,116.9,444.0,126.9	NONE	PASS
+Fig3	text:55:0.4	428.8,163.6,444.0,173.6	NONE	PASS
+Fig3	font:55:0.4	428.8,163.6,444.0,173.6	NONE	PASS
+Fig3	text:56:0.6	428.7,210.3,444.0,220.3	NONE	PASS
+Fig3	font:56:0.6	428.7,210.3,444.0,220.3	NONE	PASS
+Fig3	text:57:0.8	428.7,257.0,444.0,267.0	NONE	PASS
+Fig3	font:57:0.8	428.7,257.0,444.0,267.0	NONE	PASS
+Fig3	text:58:1.0	428.7,303.8,444.0,313.8	NONE	PASS
+Fig3	font:58:1.0	428.7,303.8,444.0,313.8	NONE	PASS
+Fig3	text:panel_title:D:Identification diagnostics	453.8,319.3,604.8,331.3	NONE	PASS
+Fig3	font:panel_title:D:Identification diagnostics	453.8,319.3,604.8,331.3	NONE	PASS
+Fig3	panel_label_title:A	61.8,691.8,72.8,705.8	NONE	PASS
+Fig3	panel_label_title:B	420.7,691.8,431.7,705.8	NONE	PASS
+Fig3	panel_label_title:C	61.8,327.3,72.8,341.3	NONE	PASS
+Fig3	panel_label_title:D	420.7,327.3,431.7,341.3	NONE	PASS
+Fig3	tick_neighbor:axes0:0:−1.5	61.2,420.9,83.1,430.9	NONE	PASS
+Fig3	tick_neighbor:axes0:1:−1.0	107.1,420.9,129.0,430.9	NONE	PASS
+Fig3	tick_neighbor:axes0:2:−0.5	153.0,420.9,174.8,430.9	NONE	PASS
+Fig3	tick_neighbor:axes0:3:0.0	202.1,420.9,217.4,430.9	NONE	PASS
+Fig3	tick_neighbor:axes0:4:0.5	248.0,420.9,263.3,430.9	NONE	PASS
+Fig3	tick_neighbor:axes0:5:1.0	293.8,420.9,309.2,430.9	NONE	PASS
+Fig3	tick_neighbor:axes0:6:1.5	339.7,420.9,355.1,430.9	NONE	PASS
+Fig3	tick_neighbor:axes0:7:−2.0	63.3,432.2,85.2,442.2	NONE	PASS
+Fig3	tick_neighbor:axes0:8:−1.5	63.3,467.0,85.2,477.0	NONE	PASS
+Fig3	tick_neighbor:axes0:9:−1.0	63.3,501.7,85.2,511.7	NONE	PASS
+Fig3	tick_neighbor:axes0:10:−0.5	63.4,536.5,85.2,546.5	NONE	PASS
+Fig3	tick_neighbor:axes0:11:0.0	69.9,571.3,85.2,581.3	NONE	PASS
+Fig3	tick_neighbor:axes0:12:0.5	69.9,606.0,85.2,616.0	NONE	PASS
+Fig3	tick_neighbor:axes0:13:1.0	69.8,640.8,85.2,650.8	NONE	PASS
+Fig3	tick_neighbor:axes0:14:1.5	69.8,675.6,85.2,685.6	NONE	PASS
+Fig3	tick_neighbor:axes1:0:−15	384.6,420.9,403.5,430.9	NONE	PASS
+Fig3	tick_neighbor:axes1:1:−10	450.0,420.9,468.8,430.9	NONE	PASS
+Fig3	tick_neighbor:axes1:2:−5	518.5,420.9,531.1,430.9	NONE	PASS
+Fig3	tick_neighbor:axes1:3:0	587.1,420.9,593.2,430.9	NONE	PASS
+Fig3	tick_neighbor:axes1:4:5	652.4,420.9,658.6,430.9	NONE	PASS
+Fig3	tick_neighbor:axes1:5:10	714.7,420.9,727.0,430.9	NONE	PASS
+Fig3	tick_neighbor:axes1:6:M0	428.8,657.6,444.0,667.6	NONE	PASS
+Fig3	tick_neighbor:axes1:7:M1	428.7,551.4,444.0,561.4	NONE	PASS
+Fig3	tick_neighbor:axes1:8:M2	428.7,445.2,444.0,455.2	NONE	PASS
+Fig3	tick_neighbor:axes2:0:−1.5	64.8,56.4,86.7,66.4	NONE	PASS
+Fig3	tick_neighbor:axes2:1:−1.0	103.0,56.4,124.9,66.4	NONE	PASS
+Fig3	tick_neighbor:axes2:2:−0.5	141.3,56.4,163.0,66.4	NONE	PASS
+Fig3	tick_neighbor:axes2:3:0.0	182.7,56.4,198.0,66.4	NONE	PASS
+Fig3	tick_neighbor:axes2:4:0.5	220.9,56.4,236.2,66.4	NONE	PASS
+Fig3	tick_neighbor:axes2:5:1.0	259.0,56.4,274.4,66.4	NONE	PASS
+Fig3	tick_neighbor:axes2:6:1.5	297.2,56.4,312.6,66.4	NONE	PASS
+Fig3	tick_neighbor:axes2:7:2.0	335.4,56.4,350.8,66.4	NONE	PASS
+Fig3	tick_neighbor:axes2:8:GSM5277737	16.9,80.7,85.2,90.7	NONE	PASS
+Fig3	tick_neighbor:axes2:9:GSM5690479	17.1,116.1,85.2,126.1	NONE	PASS
+Fig3	tick_neighbor:axes2:10:GSM7845001	16.9,151.5,85.2,161.5	NONE	PASS
+Fig3	tick_neighbor:axes2:11:GSM7845000	17.1,186.9,85.2,196.9	NONE	PASS
+Fig3	tick_neighbor:axes2:12:GSM7845003	16.9,222.3,85.2,232.3	NONE	PASS
+Fig3	tick_neighbor:axes2:13:GSM7845002	16.9,257.7,85.2,267.7	NONE	PASS
+Fig3	tick_neighbor:axes2:14:GSM5690478	16.9,293.1,85.2,303.1	NONE	PASS
+Fig3	tick_neighbor:axes3:0:0.0	446.1,56.4,461.4,66.4	NONE	PASS
+Fig3	tick_neighbor:axes3:1:0.2	493.3,56.4,508.7,66.4	NONE	PASS
+Fig3	tick_neighbor:axes3:2:0.4	540.6,56.4,555.8,66.4	NONE	PASS
+Fig3	tick_neighbor:axes3:3:0.6	587.7,56.4,603.1,66.4	NONE	PASS
+Fig3	tick_neighbor:axes3:4:0.8	634.9,56.4,650.3,66.4	NONE	PASS
+Fig3	tick_neighbor:axes3:5:1.0	682.2,56.4,697.5,66.4	NONE	PASS
+Fig3	tick_neighbor:axes3:6:0.0	428.8,70.1,444.0,80.1	NONE	PASS
+Fig3	tick_neighbor:axes3:7:0.2	428.7,116.9,444.0,126.9	NONE	PASS
+Fig3	tick_neighbor:axes3:8:0.4	428.8,163.6,444.0,173.6	NONE	PASS
+Fig3	tick_neighbor:axes3:9:0.6	428.7,210.3,444.0,220.3	NONE	PASS
+Fig3	tick_neighbor:axes3:10:0.8	428.7,257.0,444.0,267.0	NONE	PASS
+Fig3	tick_neighbor:axes3:11:1.0	428.7,303.8,444.0,313.8	NONE	PASS
+Fig3	legend_data:Fig3A donors	222.7,446.2,325.4,481.7	NONE	PASS

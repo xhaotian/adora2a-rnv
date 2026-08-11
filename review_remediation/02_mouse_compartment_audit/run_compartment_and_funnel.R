@@ -92,7 +92,7 @@ gate <- data.frame(
   rationale = if (opposite) {
     "Whole-retina/lysate and enriched/isolated-cell pooled directions are opposite."
   } else {
-    "Whole-retina/lysate and enriched/isolated-cell pooled directions are concordant; magnitude and precision differ."
+    "Both subgroup point estimates are positive; the whole-retina/lysate estimate is positive, whereas the enriched/isolated-cell estimate is centered near zero and highly imprecise."
   }
 )
 write.table(gate, file.path(out_dir, "COMPARTMENT_STOP_GATE.tsv"),

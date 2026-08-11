@@ -1,2 +1,2 @@
 gate	verdict	rationale
-COMPARTMENT-1	PASS	Whole-retina/lysate and enriched/isolated-cell pooled directions are concordant; magnitude and precision differ.
+COMPARTMENT-1	PASS	Both subgroup point estimates are positive; the whole-retina/lysate estimate is positive, whereas the enriched/isolated-cell estimate is centered near zero and highly imprecise.

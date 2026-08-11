@@ -17,7 +17,7 @@ add('mouse_effect_count',len(effects)==16,len(effects)); add('mouse_positive_cou
 add('mouse_pooled_g',np.isclose(meta.pooled_hedges_g,1.12244963229513,atol=1e-10),meta.pooled_hedges_g)
 add('compartment_direction',comp.loc['WHOLE_RETINA_OR_LYSATE','pooled_hedges_g']>0 and comp.loc['ENRICHED_OR_ISOLATED_CELL_COMPARTMENT','pooled_hedges_g']>0)
 add('human_models',set(models.model)=={'M0','M1','M2'} and len(models)==18,len(models))
-for n in range(1,6):
+for n in range(1,5):
  p=r/'07_figures'/f'Fig{n}.tif'; im=Image.open(p)
  add(f'Fig{n}_600dpi',im.info.get('dpi')==(600.0,600.0),im.info.get('dpi'))
  add(f'Fig{n}_LZW',im.tag_v2.get(259)==5,im.tag_v2.get(259)); add(f'Fig{n}_size',p.stat().st_size<10_000_000,p.stat().st_size)

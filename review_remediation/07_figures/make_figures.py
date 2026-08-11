@@ -1,262 +1,464 @@
 #!/usr/bin/env python3
-"""Generate five PLOS ONE production figures from audited tabular outputs."""
+"""Regenerate the four adjudicated PLOS ONE main figures from audited tables."""
 
+from __future__ import annotations
+
+import json
 from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-from matplotlib.patches import FancyBboxPatch, Rectangle
-from PIL import Image
+from matplotlib.patches import FancyBboxPatch
+
+from figure_style import (
+    BLUE, ORANGE, GREEN, MAGENTA, GREY, LIGHT, DARK, CONTRACT, STYLE,
+    panel_label, panel_title, reference_line, register_box_text,
+    register_legend_data, save_main_figure,
+)
+
 
 PROJECT = Path(__file__).resolve().parents[2]
 ROOT = PROJECT / "review_remediation"
 OUT = ROOT / "07_figures"
 OUT.mkdir(parents=True, exist_ok=True)
 
-BLUE, ORANGE, GREEN, MAGENTA = "#0072B2", "#D55E00", "#009E73", "#CC79A7"
-GREY, LIGHT, DARK = "#6F6F6F", "#D4D4D4", "#222222"
-plt.rcParams.update({
-    "font.family": "Arimo", "font.size": 8,
-    "axes.titlesize": 9, "axes.labelsize": 8, "xtick.labelsize": 8,
-    "ytick.labelsize": 8, "legend.fontsize": 8, "axes.spines.top": False,
-    "axes.spines.right": False, "pdf.fonttype": 42, "ps.fonttype": 42,
-})
+
+def read_counts() -> dict:
+    path = ROOT / "03_systematic_search/search_counts.json"
+    counts = json.loads(path.read_text(encoding="utf-8"))
+    required = {
+        "records_identified_total", "records_identified_GEO", "records_identified_PubMed",
+        "records_identified_BioProject", "records_identified_SRA",
+        "records_identified_Europe_PMC", "records_identified_BioStudies",
+        "duplicates_or_component_records_removed", "records_screened",
+        "records_excluded_before_report_assessment", "reports_sought_for_retrieval",
+        "reports_not_retrieved", "reports_assessed_for_eligibility", "reports_excluded",
+        "reports_excluded_no_P17_contrast", "reports_excluded_insufficient_replication",
+        "reports_excluded_wrong_tissue_or_modality",
+        "reports_excluded_no_recoverable_expression_or_contrast",
+        "reports_excluded_other", "eligible_GEO_cohorts", "eligible_non_GEO_cohorts",
+        "unique_eligible_cohorts_included", "unique_GEO_series",
+        "unique_GEO_series_included", "unique_GEO_series_excluded",
+    }
+    missing = required - set(counts)
+    if missing:
+        raise RuntimeError(f"search_counts.json missing fields: {sorted(missing)}")
+    if counts["unique_GEO_series"] != counts["unique_GEO_series_included"] + counts["unique_GEO_series_excluded"]:
+        raise RuntimeError("GEO series arithmetic is inconsistent")
+    return counts
 
 
-def panel(ax, label):
-    ax.text(0.0, 1.04, label, transform=ax.transAxes, fontsize=11,
-            fontweight="bold", va="top", ha="left")
+def add_flow_box(ax, fig, *, x: float, top: float, width: float, lines: list[str], edge: str, name: str):
+    line_height = 0.027
+    height = 0.042 + line_height * len(lines)
+    y = top - height
+    patch = FancyBboxPatch(
+        (x, y), width, height, boxstyle="round,pad=0.010",
+        facecolor="white", edgecolor=edge, linewidth=1.0,
+    )
+    ax.add_patch(patch)
+    text = ax.text(
+        x + 0.020, y + height / 2, "\n".join(lines),
+        ha="left", va="center", multialignment="left",
+        fontsize=STYLE["annotation_pt"], linespacing=1.23,
+    )
+    register_box_text(fig, patch, text, name)
+    return {"x": x, "y": y, "w": width, "h": height, "patch": patch, "text": text}
 
 
-def save(fig, stem):
-    """Preserve physical canvas; write 600-dpi flattened RGB LZW TIFF."""
-    fig.savefig(OUT / f"{stem}.pdf", facecolor="white")
-    png = OUT / f".{stem}.png"
-    fig.savefig(png, dpi=600, facecolor="white")
-    with Image.open(png) as im:
-        im.convert("RGB").save(OUT / f"{stem}.tif", compression="tiff_lzw", dpi=(600, 600))
-    png.unlink()
-    plt.close(fig)
+def arrow(ax, start, end):
+    ax.annotate(
+        "", xy=end, xytext=start,
+        arrowprops=dict(arrowstyle="-|>", color=GREY, lw=1.0,
+                        shrinkA=0, shrinkB=0, mutation_scale=10),
+        annotation_clip=False,
+    )
 
 
-# Fig 1: PRISMA 2020 flow. Counts come only from the all-source audit.
-counts = pd.read_csv(ROOT / "03_systematic_search/PRISMA_FLOW_SOURCE.tsv", sep="\t").set_index("item")["count"]
-def c(key): return int(counts.loc[key])
+def build_fig1() -> plt.Figure:
+    c = read_counts()
+    fig, ax = plt.subplots(figsize=(CONTRACT["output"]["width_in"], CONTRACT["figures"]["Fig1"]["height_in"]))
+    ax.set_axis_off()
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
 
-fig, ax = plt.subplots(figsize=(7.3, 8.45))
-ax.set_axis_off()
+    left = add_flow_box(ax, fig, x=.045, top=.965, width=.42, edge=BLUE, name="database_identification", lines=[
+        "Databases and registers",
+        f"GEO objects (n = {c['records_identified_GEO']})",
+        f"PubMed reports (n = {c['records_identified_PubMed']})",
+    ])
+    right = add_flow_box(ax, fig, x=.535, top=.965, width=.42, edge=BLUE, name="other_identification", lines=[
+        "Other sources",
+        f"BioProject/SRA records (n = {c['records_identified_BioProject'] + c['records_identified_SRA']})",
+        f"Europe PMC reports (n = {c['records_identified_Europe_PMC']})",
+        f"BioStudies records (n = {c['records_identified_BioStudies']})",
+    ])
+    norm = add_flow_box(ax, fig, x=.17, top=.745, width=.66, edge=GREY, name="normalization", lines=[
+        "Record normalization and deduplication",
+        f"Duplicate/component records removed (n = {c['duplicates_or_component_records_removed']})",
+        f"GEO objects consolidated to unique series (n = {c['unique_GEO_series']})",
+        "Cross-source duplicates resolved",
+    ])
+    screened = add_flow_box(ax, fig, x=.075, top=.555, width=.46, edge=DARK, name="screened", lines=[
+        "Records screened",
+        f"n = {c['records_screened']}",
+    ])
+    screen_excl = add_flow_box(ax, fig, x=.63, top=.555, width=.325, edge=GREY, name="screen_excluded", lines=[
+        "Records excluded",
+        f"n = {c['records_excluded_before_report_assessment']}",
+    ])
+    assessed = add_flow_box(ax, fig, x=.075, top=.385, width=.46, edge=DARK, name="eligibility", lines=[
+        f"Reports sought and retrieved (n = {c['reports_sought_for_retrieval']})",
+        f"Reports assessed for eligibility (n = {c['reports_assessed_for_eligibility']})",
+        f"Reports not retrieved (n = {c['reports_not_retrieved']})",
+    ])
+    excluded = add_flow_box(ax, fig, x=.585, top=.405, width=.37, edge=GREY, name="eligibility_excluded", lines=[
+        f"Reports/datasets excluded (n = {c['reports_excluded']})",
+        f"Non-P17 contrast (n = {c['reports_excluded_no_P17_contrast']})",
+        f"Insufficient replication (n = {c['reports_excluded_insufficient_replication']})",
+        f"Wrong tissue/modality (n = {c['reports_excluded_wrong_tissue_or_modality']})",
+        f"No reconstructable expression /\ncontrast (n = {c['reports_excluded_no_recoverable_expression_or_contrast']})",
+        f"Other eligibility reasons (n = {c['reports_excluded_other']})",
+    ])
+    included = add_flow_box(ax, fig, x=.20, top=.165, width=.60, edge=GREEN, name="included", lines=[
+        "Unique eligible mouse cohorts",
+        f"GEO cohorts (n = {c['eligible_GEO_cohorts']})",
+        f"Non-GEO cohorts (n = {c['eligible_non_GEO_cohorts']})",
+        f"Total (k = {c['unique_eligible_cohorts_included']})",
+    ])
 
-def box(x, y, w, h, text, edge=DARK, align="left"):
-    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.008",
-                                facecolor="white", edgecolor=edge, linewidth=1.1))
-    ax.text(x + (0.02 if align == "left" else w/2), y + h/2, text,
-            ha=align, va="center", fontsize=8, linespacing=1.28)
-
-box(.03, .77, .45, .20,
-    "Records identified from databases\n"
-    f"GEO objects (n = {c('records_identified_GEO')})\n"
-    f"PubMed reports (n = {c('records_identified_PubMed')})\n"
-    f"BioProject records (n = {c('records_identified_BioProject')})\n"
-    f"SRA experiments (n = {c('records_identified_SRA')})\n"
-    f"Europe PMC reports (n = {c('records_identified_Europe_PMC')})\n"
-    f"BioStudies records (n = {c('records_identified_BioStudies')})", BLUE)
-box(.57, .79, .40, .15,
-    "Records removed before screening\n"
-    f"Duplicate or component records (n = {c('duplicates_or_component_records_removed')})",
-    GREY)
-box(.03, .61, .45, .09, f"Records screened\n(n = {c('records_screened')})", DARK)
-box(.57, .61, .40, .09,
-    f"Records excluded\n(n = {c('records_excluded_before_report_assessment')})", GREY)
-box(.03, .46, .45, .09,
-    f"Reports sought for retrieval\n(n = {c('reports_sought_for_retrieval')})", DARK)
-box(.57, .46, .40, .09,
-    f"Reports not retrieved\n(n = {c('reports_not_retrieved')})", GREY)
-box(.03, .31, .45, .09,
-    f"Reports assessed for eligibility\n(n = {c('reports_assessed_for_eligibility')})", DARK)
-box(.57, .25, .40, .21,
-    "Reports excluded (n = 40)\n"
-    f"No P17 contrast (n = {c('reports_excluded_no_P17_contrast')})\n"
-    f"Insufficient replication (n = {c('reports_excluded_insufficient_replication')})\n"
-    f"Wrong tissue or modality (n = {c('reports_excluded_wrong_tissue_or_modality')})\n"
-    f"No recoverable expression/contrast (n = {c('reports_excluded_no_recoverable_expression_or_contrast')})\n"
-    f"Other eligibility reason (n = {c('reports_excluded_other')})", GREY)
-box(.03, .08, .45, .13,
-    "Unique eligible cohorts included\n"
-    f"GEO cohorts (n = {c('eligible_GEO_cohorts')})\n"
-    f"Non-GEO cohorts (n = {c('eligible_non_GEO_cohorts')})\n"
-    f"Total (k = {c('unique_eligible_cohorts_included')})", GREEN)
-for y1, y2 in [(.77, .70), (.61, .55), (.46, .40), (.31, .21)]:
-    ax.annotate("", xy=(.255, y2), xytext=(.255, y1),
-                arrowprops=dict(arrowstyle="-|>", color=GREY, lw=1))
-for y in [.655, .505, .355]:
-    ax.annotate("", xy=(.57, y), xytext=(.48, y),
-                arrowprops=dict(arrowstyle="-|>", color=GREY, lw=1))
-ax.text(.03, .015, "Search date: 11 August 2026; records and decisions are listed in Search_All_Sources.tsv.",
-        fontsize=8, color=GREY)
-save(fig, "Fig1")
+    arrow(ax, (left["x"] + left["w"] / 2, left["y"]), (norm["x"] + norm["w"] * .36, norm["y"] + norm["h"]))
+    arrow(ax, (right["x"] + right["w"] / 2, right["y"]), (norm["x"] + norm["w"] * .64, norm["y"] + norm["h"]))
+    arrow(ax, (norm["x"] + norm["w"] / 2, norm["y"]), (screened["x"] + screened["w"] / 2, screened["y"] + screened["h"]))
+    arrow(ax, (screened["x"] + screened["w"], screened["y"] + screened["h"] / 2), (screen_excl["x"], screen_excl["y"] + screen_excl["h"] / 2))
+    arrow(ax, (screened["x"] + screened["w"] / 2, screened["y"]), (assessed["x"] + assessed["w"] / 2, assessed["y"] + assessed["h"]))
+    arrow(ax, (assessed["x"] + assessed["w"], assessed["y"] + assessed["h"] / 2), (excluded["x"], excluded["y"] + excluded["h"] / 2))
+    arrow(ax, (assessed["x"] + assessed["w"] / 2, assessed["y"]), (included["x"] + included["w"] / 2, included["y"] + included["h"]))
+    return fig
 
 
-# Fig 2: mouse synthesis with compartment encoding.
 eff = pd.read_csv(ROOT / "02_mouse_unit_audit/MOUSE_FINAL_PRIMARY_STUDY_EFFECTS.tsv", sep="\t")
 comp = pd.read_csv(ROOT / "02_mouse_compartment_audit/MOUSE_COMPARTMENT_REGISTRY.tsv", sep="\t")
 eff = eff.merge(comp[["accession", "compartment_category"]], left_on="study", right_on="accession")
 meta = pd.read_csv(ROOT / "02_mouse_unit_audit/MOUSE_FINAL_PRIMARY_META_RESULTS.tsv", sep="\t").iloc[0]
+strict = pd.read_csv(ROOT / "02_mouse_unit_audit/MOUSE_STRICT_UNIT_CONFIRMED_META_RESULTS.tsv", sep="\t").iloc[0]
 loo = pd.read_csv(ROOT / "02_mouse_unit_audit/MOUSE_FINAL_PRIMARY_LOO.tsv", sep="\t")
 sub = pd.read_csv(ROOT / "02_mouse_compartment_audit/MOUSE_COMPARTMENT_META_RESULTS.tsv", sep="\t")
-fig = plt.figure(figsize=(7.3, 8.55))
-gs = fig.add_gridspec(2, 2, height_ratios=[1.6, 1], hspace=.42, wspace=.42,
-                      left=.20, right=.97, top=.97, bottom=.13)
-ax = fig.add_subplot(gs[0, :]); panel(ax, "A")
-e = eff.sort_values("hedges_g").reset_index(drop=True); y = np.arange(len(e))
-styles = {
-    "WHOLE_RETINA_OR_LYSATE": ("o", BLUE),
-    "ENRICHED_OR_ISOLATED_CELL_COMPARTMENT": ("s", ORANGE),
-    "OTHER_RETINAL_COMPARTMENT": ("^", GREEN),
-}
-for category, (marker, color) in styles.items():
-    z = e[e.compartment_category == category]
-    ax.errorbar(z.hedges_g, z.index, xerr=[z.hedges_g-z.ci95_low, z.ci95_high-z.hedges_g],
-                fmt=marker, color=color, ecolor=color, capsize=2, ms=4.5, lw=.9)
-py = -1.25
-ax.errorbar(meta.pooled_hedges_g, py,
-            xerr=[[meta.pooled_hedges_g-meta.ci95_low], [meta.ci95_high-meta.pooled_hedges_g]],
-            fmt="D", color=DARK, capsize=3, ms=5)
-ax.plot([meta.prediction_interval_low, meta.prediction_interval_high], [py-.35, py-.35],
-        color=DARK, lw=3, alpha=.42)
-ax.axvline(0, color=GREY, lw=.8)
-ax.set_yticks(list(y)+[py], list(e.study)+["Pooled"])
-ax.set_ylim(py-.72, len(e)-.2); ax.set_xlabel("Hedges g (OIR versus normoxia)")
-ax.set_title(f"Average direction across retinal transcriptomic contexts: k={int(meta.k)}, "
-             f"{int(meta.positive_studies)}/{int(meta.k)} positive; I²={meta.I2:.1f}%")
-handles = [Line2D([0], [0], marker=m, color="none", markerfacecolor=col,
-                  markeredgecolor=col, label=lab, markersize=5)
-           for lab, (m, col) in [
-               ("Whole retina/lysate", styles["WHOLE_RETINA_OR_LYSATE"]),
-               ("Enriched/isolated cells", styles["ENRICHED_OR_ISOLATED_CELL_COMPARTMENT"]),
-               ("Other retinal compartment", styles["OTHER_RETINAL_COMPARTMENT"]),
-           ]]
-ax.legend(handles=handles, frameon=False, loc="lower right")
-
-ax = fig.add_subplot(gs[1, 0]); panel(ax, "B")
-l = loo.sort_values("pooled_hedges_g").reset_index(drop=True); yy = np.arange(len(l))
-ax.errorbar(l.pooled_hedges_g, yy,
-            xerr=[l.pooled_hedges_g-l.ci95_low, l.ci95_high-l.pooled_hedges_g],
-            fmt="o", color=BLUE, ecolor=BLUE, capsize=2, ms=3.5, lw=.8)
-ax.axvline(meta.pooled_hedges_g, color=ORANGE, ls="--", lw=1)
-ax.axvline(0, color=GREY, lw=.8); ax.set_yticks(yy, l.omitted_accession)
-ax.set_xlabel("Pooled Hedges g after omission"); ax.set_title("Leave-one-accession-out")
-
-ax = fig.add_subplot(gs[1, 1]); panel(ax, "C")
-z = sub[sub.analysis_set.isin(["BROAD_ALL_RETINAL_CONTEXTS", "WHOLE_RETINA_OR_LYSATE",
-                               "ENRICHED_OR_ISOLATED_CELL_COMPARTMENT"])].copy()
-order = ["BROAD_ALL_RETINAL_CONTEXTS", "WHOLE_RETINA_OR_LYSATE",
-         "ENRICHED_OR_ISOLATED_CELL_COMPARTMENT"]
-z = z.set_index("analysis_set").loc[order].reset_index(); yy = np.arange(3)[::-1]
-labels = ["All contexts (k=16)", "Whole retina/lysate (k=13)", "Enriched/isolated (k=2)"]
-for i, r in z.iterrows():
-    ax.errorbar(r.pooled_hedges_g, yy[i],
-                xerr=[[r.pooled_hedges_g-r.ci95_low], [r.ci95_high-r.pooled_hedges_g]],
-                fmt="D", color=[DARK, BLUE, ORANGE][i], capsize=3, ms=5)
-ax.axvline(0, color=GREY, lw=.8); ax.set_yticks(yy, labels)
-ax.set_xlabel("REML/HK pooled Hedges g (95% CI)"); ax.set_title("Compartment sensitivity")
-fig.text(.20, .018, "Public animal/eye mapping was incomplete for several datasets; all cohorts were evaluated using the same\n"
-         "deposited-sample eligibility criteria.", fontsize=8, color=GREY, va="bottom")
-save(fig, "Fig2")
 
 
-# Fig 3: donor-level human sensitivity analysis. No pooled regression line.
+def draw_fig2a(ax):
+    e = eff.sort_values("hedges_g").reset_index(drop=True)
+    markers = {
+        "WHOLE_RETINA_OR_LYSATE": "o",
+        "ENRICHED_OR_ISOLATED_CELL_COMPARTMENT": "s",
+        "OTHER_RETINAL_COMPARTMENT": "D",
+    }
+    for category, marker in markers.items():
+        z = e[e.compartment_category == category]
+        ax.errorbar(
+            z.hedges_g, z.index,
+            xerr=[z.hedges_g - z.ci95_low, z.ci95_high - z.hedges_g],
+            fmt=marker, color=DARK, ecolor=DARK, capsize=2,
+            ms=STYLE["marker_size_pt"], lw=STYLE["line_width_pt"], zorder=3,
+        )
+    pooled_y = -1.25
+    ax.errorbar(
+        meta.pooled_hedges_g, pooled_y,
+        xerr=[[meta.pooled_hedges_g - meta.ci95_low], [meta.ci95_high - meta.pooled_hedges_g]],
+        fmt="D", color=ORANGE, ecolor=ORANGE, capsize=3, ms=5.5, zorder=4,
+    )
+    ax.plot(
+        [meta.prediction_interval_low, meta.prediction_interval_high],
+        [pooled_y - .35, pooled_y - .35], color=ORANGE, lw=3.0, alpha=.55, zorder=2,
+    )
+    reference_line(ax)
+    ax.set_yticks([*range(len(e)), pooled_y], [*e.study, "REML/HK pooled"])
+    ax.set_ylim(pooled_y - .75, len(e) - .2)
+    ax.set_xlim(-2.0, 6.2)
+    ax.set_xticks([-2, 0, 2, 4, 6])
+    ax.set_xlabel("Hedges g (OIR versus normoxia)")
+    handles = [
+        Line2D([0], [0], marker="o", color="none", markerfacecolor=DARK, markeredgecolor=DARK,
+               label="Whole retina/lysate", markersize=5),
+        Line2D([0], [0], marker="s", color="none", markerfacecolor=DARK, markeredgecolor=DARK,
+               label="Enriched/isolated cells", markersize=5),
+        Line2D([0], [0], marker="D", color="none", markerfacecolor=DARK, markeredgecolor=DARK,
+               label="Other retinal compartment", markersize=5),
+    ]
+    legend = ax.legend(
+        handles=handles, loc="upper center", bbox_to_anchor=(.5, -.13), ncol=3,
+        frameon=True, facecolor="white", edgecolor=LIGHT, columnspacing=1.4, handletextpad=.5,
+    )
+    return legend
+
+
+def draw_fig2b(ax):
+    z = loo.sort_values("pooled_hedges_g").reset_index(drop=True)
+    yy = np.arange(len(z))
+    ax.errorbar(
+        z.pooled_hedges_g, yy,
+        xerr=[z.pooled_hedges_g - z.ci95_low, z.ci95_high - z.pooled_hedges_g],
+        fmt="o", color=DARK, ecolor=DARK, capsize=2, ms=3.5, lw=.8,
+    )
+    reference_line(ax, float(meta.pooled_hedges_g), linestyle="--", linewidth=1.0).set_color(ORANGE)
+    reference_line(ax)
+    ax.set_yticks(yy, z.omitted_accession)
+    ax.set_xlabel("Pooled Hedges g after omission")
+
+
+def draw_fig2c(ax):
+    order = ["BROAD_ALL_RETINAL_CONTEXTS", "WHOLE_RETINA_OR_LYSATE", "ENRICHED_OR_ISOLATED_CELL_COMPARTMENT"]
+    z = sub.set_index("analysis_set").loc[order].reset_index()
+    yy = np.arange(3)[::-1]
+    labels = ["Broad retinal\ncontexts", "Whole retina /\nlysate", "Enriched /\nisolated cells"]
+    for i, row in z.iterrows():
+        ax.errorbar(
+            row.pooled_hedges_g, yy[i],
+            xerr=[[row.pooled_hedges_g - row.ci95_low], [row.ci95_high - row.pooled_hedges_g]],
+            fmt="D", color=DARK, ecolor=DARK, capsize=3, ms=4.8,
+        )
+        ax.text(row.ci95_high + .08, yy[i], f"k={int(row.k)}", va="center", fontsize=STYLE["annotation_pt"])
+    reference_line(ax)
+    ax.set_yticks(yy, labels)
+    ax.set_xlim(-1.45, 2.75)
+    ax.set_xlabel("Pooled Hedges g (95% CI)")
+
+
+def draw_fig2d(ax):
+    ax.errorbar(
+        strict.pooled_hedges_g, 0,
+        xerr=[[strict.pooled_hedges_g - strict.ci95_low], [strict.ci95_high - strict.pooled_hedges_g]],
+        fmt="D", color=DARK, ecolor=DARK, capsize=3, ms=4.8,
+    )
+    reference_line(ax)
+    ax.set_yticks([0], ["GSE234447 +\nGSE315511"])
+    ax.set_ylim(-.7, .7)
+    ax.set_xlim(min(-27, strict.ci95_low - 1), max(30, strict.ci95_high + 1))
+    ax.set_xlabel("Pooled Hedges g (95% CI)")
+    ax.text(.97, .84, "k=2", transform=ax.transAxes, ha="right", va="top", fontsize=STYLE["annotation_pt"])
+
+
+def build_fig2() -> plt.Figure:
+    fig = plt.figure(figsize=(CONTRACT["output"]["width_in"], CONTRACT["figures"]["Fig2"]["height_in"]))
+    gs = fig.add_gridspec(
+        2, 3, height_ratios=[1.78, 1.0], width_ratios=[1.22, 1.05, .92],
+        hspace=.60, wspace=.72, left=.165, right=.945, top=.935, bottom=.105,
+    )
+    ax_a = fig.add_subplot(gs[0, :]); panel_label(ax_a, "A"); panel_title(ax_a, "A", "Cohort-level effects and pooled estimate")
+    draw_fig2a(ax_a)
+    ax_b = fig.add_subplot(gs[1, 0]); panel_label(ax_b, "B"); panel_title(ax_b, "B", "Leave-one-cohort-out estimates")
+    draw_fig2b(ax_b)
+    ax_c = fig.add_subplot(gs[1, 1]); panel_label(ax_c, "C"); panel_title(ax_c, "C", "Compartment sensitivity")
+    draw_fig2c(ax_c)
+    ax_d = fig.add_subplot(gs[1, 2]); panel_label(ax_d, "D"); panel_title(ax_d, "D", "Strict-unit sensitivity")
+    draw_fig2d(ax_d)
+    return fig
+
+
 h = pd.read_csv(ROOT / "04_human_rebuild/human_primary_model_input.tsv", sep="\t")
 h = h[h.analysis_universe == "HIGHER_CELL_COUNT_7"].copy()
 mods = pd.read_csv(ROOT / "04_human_rebuild/human_primary_model_full_results.tsv", sep="\t")
 mods = mods[(mods.analysis_universe == "HIGHER_CELL_COUNT_7") & (mods.term == "ADORA2A_z")]
 lodo = pd.read_csv(ROOT / "04_human_rebuild/human_LODO.tsv", sep="\t")
-lodo = lodo[(lodo.analysis_universe == "HIGHER_CELL_COUNT_7") & (lodo.model == "M0")]
-fig, axs = plt.subplots(2, 2, figsize=(7.3, 7.25))
-fig.subplots_adjust(left=.11, right=.97, top=.96, bottom=.10, hspace=.48, wspace=.42)
-ax = axs[0, 0]; panel(ax, "A")
-for ds, color, marker in [("GSE165784", BLUE, "o"), ("GSE245561", ORANGE, "s")]:
-    d = h[h.dataset == ds]
-    ax.scatter(d.ADORA2A_z, d.score_z, label=ds, color=color, marker=marker, s=34)
-ax.set(xlabel="ADORA2A abundance (z)", ylabel="Six-gene donor score (sensitivity)",
-       title="Higher-cell-count donor stratum (≥20 cells)")
-ax.legend(frameon=False)
-
-ax = axs[0, 1]; panel(ax, "B")
-m = mods.set_index("model").loc[["M0", "M1", "M2"]].reset_index(); yy = np.arange(3)[::-1]
-ax.errorbar(m.estimate, yy, xerr=[m.estimate-m.ci95_low, m.ci95_high-m.estimate],
-            fmt="D", color=BLUE, ecolor=BLUE, capsize=3, ms=5)
-ax.axvline(0, color=GREY, lw=.8)
-ax.set_yticks(yy, ["M0", "M1: + dataset", "M2: + dataset + technical PC1"])
-ax.set_xlabel("ADORA2A coefficient (95% CI)"); ax.set_title("Sensitivity-model estimates")
-
-ax = axs[1, 0]; panel(ax, "C")
-l = lodo.sort_values("estimate"); yy = np.arange(len(l))
-ax.errorbar(l.estimate, yy, xerr=[l.estimate-l.ci95_low, l.ci95_high-l.estimate],
-            fmt="o", color=BLUE, ecolor=BLUE, capsize=2, ms=4)
-ax.axvline(0, color=GREY, lw=.8); ax.set_yticks(yy, l.left_out_donor_id)
-ax.set_xlabel("M0 coefficient after donor omission"); ax.set_title("M0 leave-one-donor-out")
-
-ax = axs[1, 1]; panel(ax, "D"); ax.set_axis_off()
-diag = [[r.model, int(r.residual_df), f"{r.condition_number:.1f}", f"{r.vif:.1f}"] for _, r in m.iterrows()]
-tbl = ax.table(cellText=diag, colLabels=["Model", "Residual\ndf", "Condition\nno.", "VIF"],
-               loc="center", cellLoc="center", colColours=["#DDEBF7"]*4)
-tbl.auto_set_font_size(False); tbl.set_fontsize(8); tbl.scale(1, 1.55)
-for cell in tbl.get_celld().values():
-    cell.set_text_props(va="center")
-for col in range(4):
-    tbl[(0, col)].set_height(tbl[(0, col)].get_height() * 1.35)
-ax.set_title("Identification diagnostics", pad=10)
-ax.text(.5, .10, "M2 is a technical identification sensitivity;\nadjusted estimates are weakly identified.",
-        ha="center", transform=ax.transAxes, color=GREY, fontsize=8)
-save(fig, "Fig3")
+lodo_m0 = lodo[(lodo.analysis_universe == "HIGHER_CELL_COUNT_7") & (lodo.model == "M0")]
 
 
-# Fig 4: separate human contexts; coefficients are not cross-dataset comparable.
-fig, axs = plt.subplots(3, 2, figsize=(7.3, 8.55))
-fig.subplots_adjust(left=.18, right=.96, top=.96, bottom=.08, hspace=.68, wspace=.48)
-axs = axs.ravel()
-d = pd.read_csv(ROOT/"05_contextual_human/Context_GSE160306.tsv", sep="\t")
-ax=axs[0]; panel(ax,"A"); yy=np.arange(len(d)); ax.errorbar(d.estimate,yy,xerr=[d.estimate-d.ci95_low,d.ci95_high-d.estimate],fmt="o",color=BLUE,capsize=3); ax.axvline(0,color=GREY,lw=.8); ax.set_yticks(yy,["Stage","Stage ×\nperipheral region"]); ax.set_xlabel("Coefficient (95% CI)"); ax.set_title("GSE160306 retina")
-d=pd.read_csv(ROOT/"05_contextual_human/Context_GSE60436_samples.tsv",sep="\t"); ax=axs[1]; panel(ax,"B"); order=[x for x in ["normal_retina","inactive_FVM","active_FVM"] if x in set(d.group)]
-for i,g in enumerate(order):
-    vals=d.loc[d.group==g,"ADORA2A"].dropna(); ax.scatter(np.full(len(vals),i)+np.linspace(-.06,.06,len(vals)),vals,color=[GREY,BLUE,ORANGE][i],s=26)
-ax.set_xticks(range(len(order)),[x.replace("_","\n") for x in order]); ax.set_ylabel("Deposited expression value"); ax.set_title("GSE60436 FVM")
-d=pd.read_csv(ROOT/"05_contextual_human/Context_GSE276892.tsv",sep="\t"); ax=axs[2]; panel(ax,"C"); groups=list(dict.fromkeys(d.group))
-for i,g in enumerate(groups):
-    vals=d.loc[d.group==g,"ADORA2A"].dropna(); ax.scatter(np.full(len(vals),i)+np.linspace(-.08,.08,len(vals)),vals,color=[BLUE,ORANGE,GREEN,MAGENTA][i%4],s=25); ax.plot([i-.15,i+.15],[np.median(vals)]*2,color=DARK)
-ax.set_xticks(range(len(groups)),groups); ax.set_ylabel("ADORA2A expression"); ax.set_title("GSE276892 vitreous cells")
-d=pd.read_csv(ROOT/"05_contextual_human/Context_CD31_FVM_effects.tsv",sep="\t"); ax=axs[3]; panel(ax,"D"); yy=np.arange(len(d)); ax.errorbar(d.effect,yy,xerr=[d.effect-d.lo,d.hi-d.effect],fmt="o",color=BLUE,capsize=3); ax.axvline(0,color=GREY,lw=.8); ax.set_yticks(yy,["GSE94019\nPDR FVM vs control", "GSE307925\ntreated vs untreated", "GSE179568\nPDR vs macular pucker", "GSE179568\nPDR vs macular hole"]); ax.set_xlabel("Dataset-specific coefficient (95% CI)"); ax.set_title("CD31/FVM contexts")
-ax.text(0,-.30,"Coefficient magnitudes are dataset-specific\nand are not directly comparable.",transform=ax.transAxes,fontsize=8,color=GREY,va="top")
-d=pd.read_csv(ROOT/"05_contextual_human/Context_2026_MNV.tsv",sep="\t"); ax=axs[4]; panel(ax,"E"); d=d[d.file=="media-2.xlsx"].drop_duplicates("cell_type").sort_values("logFC_pseudobulk"); yy=np.arange(len(d)); ax.scatter(d.logFC_pseudobulk,yy,color=ORANGE,s=26); ax.axvline(0,color=GREY,lw=.8); ax.set_yticks(yy,d.cell_type); ax.set_xlabel("MNV vs control pseudobulk logFC"); ax.set_title("2026 MNV preprint v1")
-d=pd.read_csv(ROOT/"05_contextual_human/Context_GSE234047.tsv",sep="\t"); ax=axs[5]; panel(ax,"F"); wide=d.pivot(index="section",columns="stratum",values="mean_count")
-if {"NON_LESIONAL","LESION_OVERLAP"}.issubset(wide.columns):
-    for _,r in wide.iterrows(): ax.plot([0,1],[r.NON_LESIONAL,r.LESION_OVERLAP],color=GREY,marker="o",ms=4)
-ax.set_xticks([0,1],["Non-lesional","Lesion overlap"]); ax.set_xlim(-.15,1.15); ax.set_ylabel("Mean ADORA2A count per spot"); ax.set_title("GSE234047 spatial (one donor)")
-save(fig,"Fig4")
+def draw_fig3a(ax, fig=None):
+    for dataset, color, marker in [("GSE165784", BLUE, "o"), ("GSE245561", ORANGE, "s")]:
+        z = h[h.dataset == dataset]
+        ax.scatter(z.ADORA2A_z, z.score_z, label=dataset, color=color, marker=marker,
+                   s=38, edgecolor="white", linewidth=.45, zorder=3)
+    ax.set_xlabel("ADORA2A abundance (z)")
+    ax.set_ylabel("Six-gene donor score (sensitivity)")
+    legend = ax.legend(
+        loc="lower right", ncol=1, frameon=True, facecolor="white", edgecolor=LIGHT,
+        framealpha=.96, borderpad=.5, labelspacing=.4,
+    )
+    if fig is not None:
+        register_legend_data(fig, legend, ax, h.ADORA2A_z, h.score_z, "Fig3A donors", radius_pt=5)
 
 
-# Fig 5: explicit supported / not supported / not tested boundaries.
-fig, ax = plt.subplots(figsize=(7.3, 4.55)); ax.set_axis_off()
-columns = [
-    (.03, .64, .94, .25, "SUPPORTED", GREEN,
-     "Positive average transcript direction across eligible mouse P17 OIR\nretinal transcriptomic contexts",
-     "Bounded by heterogeneity, a prediction interval crossing zero,\nand biological-unit uncertainty."),
-    (.03, .36, .94, .20, "NOT SUPPORTED", ORANGE,
-     "Stable, reproducible positive human transcriptomic signal",
-     "Donor-level sensitivity estimates were imprecise;\ncontext-specific results were not pooled."),
-    (.03, .06, .94, .22, "NOT TESTED", GREY,
-     "Receptor activation · causal importance\nTherapeutic efficacy",
-     "All conclusions remain at transcript level."),
-]
-for x,y,w,h,label,color,statement,boundary in columns:
-    ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle="round,pad=0.012",facecolor="white",edgecolor=color,linewidth=1.4))
-    ax.add_patch(Rectangle((x,y),.19,h,facecolor=color,alpha=.14,edgecolor="none"))
-    ax.text(x+.095,y+h/2,label,ha="center",va="center",fontweight="bold",fontsize=9,color=color)
-    ax.text(x+.22,y+h*.64,statement,ha="left",va="center",fontsize=8.5,fontweight="bold",wrap=True)
-    ax.text(x+.22,y+h*.28,boundary,ha="left",va="center",fontsize=8,color=GREY,wrap=True)
-save(fig,"Fig5")
+def draw_fig3b(ax):
+    z = mods.set_index("model").loc[["M0", "M1", "M2"]].reset_index()
+    yy = np.arange(3)[::-1]
+    ax.errorbar(
+        z.estimate, yy, xerr=[z.estimate - z.ci95_low, z.ci95_high - z.estimate],
+        fmt="D", color=DARK, ecolor=DARK, capsize=3, ms=4.8,
+    )
+    reference_line(ax)
+    ax.set_yticks(yy, ["M0", "M1", "M2"])
+    ax.set_xlabel("ADORA2A coefficient (95% CI)")
 
-print(f"Figures written to {OUT}")
+
+def draw_fig3c(ax):
+    z = lodo_m0.sort_values("estimate")
+    yy = np.arange(len(z))
+    ax.errorbar(
+        z.estimate, yy, xerr=[z.estimate - z.ci95_low, z.ci95_high - z.estimate],
+        fmt="o", color=DARK, ecolor=DARK, capsize=2, ms=4,
+    )
+    reference_line(ax)
+    ax.set_yticks(yy, z.left_out_GSM)
+    ax.set_xlabel("M0 coefficient after donor omission")
+
+
+def draw_fig3d(ax):
+    ax.set_axis_off()
+    z = mods.set_index("model").loc[["M0", "M1", "M2"]].reset_index()
+    diag = [[r.model, int(r.residual_df), f"{r.condition_number:.1f}", f"{r.vif:.1f}"] for _, r in z.iterrows()]
+    table = ax.table(
+        cellText=diag, colLabels=["Model", "Residual\ndf", "Condition\nno.", "VIF"],
+        bbox=[.02, .28, .96, .58], cellLoc="center", colColours=["#DDEBF7"] * 4,
+    )
+    table.auto_set_font_size(False); table.set_fontsize(8)
+    for cell in table.get_celld().values():
+        cell.set_text_props(va="center")
+        cell.set_edgecolor(LIGHT)
+        cell.set_linewidth(.6)
+    ax.text(.5, .14, "M2: technical sensitivity", ha="center", va="center",
+            transform=ax.transAxes, color=GREY, fontsize=STYLE["annotation_pt"])
+
+
+def build_fig3() -> plt.Figure:
+    fig, axes = plt.subplots(2, 2, figsize=(CONTRACT["output"]["width_in"], CONTRACT["figures"]["Fig3"]["height_in"]))
+    fig.subplots_adjust(left=.13, right=.945, top=.93, bottom=.105, hspace=.56, wspace=.52)
+    titles = {
+        "A": "Higher-cell-count PDR donors\n(≥20 endothelial cells)",
+        "B": "Sensitivity-model estimates",
+        "C": "M0 leave-one-donor-out",
+        "D": "Identification diagnostics",
+    }
+    for ax, label in zip(axes.ravel(), "ABCD"):
+        panel_label(ax, label); panel_title(ax, label, titles[label], pad=9)
+    draw_fig3a(axes[0, 0], fig)
+    draw_fig3b(axes[0, 1])
+    draw_fig3c(axes[1, 0])
+    draw_fig3d(axes[1, 1])
+    return fig
+
+
+def draw_fig4a(ax):
+    z = pd.read_csv(ROOT / "05_contextual_human/Context_GSE160306.tsv", sep="\t")
+    yy = np.arange(len(z))
+    ax.errorbar(z.estimate, yy, xerr=[z.estimate - z.ci95_low, z.ci95_high - z.estimate],
+                fmt="o", color=DARK, ecolor=DARK, capsize=3, ms=4)
+    reference_line(ax)
+    ax.set_yticks(yy, ["Stage", "Stage × peripheral\nregion"])
+    ax.set_xlabel("Coefficient (95% CI)")
+
+
+def draw_fig4b(ax):
+    z = pd.read_csv(ROOT / "05_contextual_human/Context_GSE60436_samples.tsv", sep="\t")
+    order = [x for x in ["normal_retina", "inactive_FVM", "active_FVM"] if x in set(z.group)]
+    for i, group in enumerate(order):
+        values = z.loc[z.group == group, "ADORA2A"].dropna()
+        jitter = np.linspace(-.06, .06, len(values)) if len(values) > 1 else np.zeros(len(values))
+        ax.scatter(np.full(len(values), i) + jitter, values, color=[GREY, BLUE, ORANGE][i],
+                   s=28, edgecolor="white", linewidth=.4, zorder=3)
+    ax.set_xticks(range(len(order)), [x.replace("_", "\n") for x in order])
+    ax.set_ylabel("Deposited expression value")
+    ax.margins(y=.16)
+
+
+def draw_fig4c(ax):
+    z = pd.read_csv(ROOT / "05_contextual_human/Context_GSE276892.tsv", sep="\t")
+    groups = list(dict.fromkeys(z.group))
+    for i, group in enumerate(groups):
+        values = z.loc[z.group == group, "ADORA2A"].dropna()
+        jitter = np.linspace(-.08, .08, len(values)) if len(values) > 1 else np.zeros(len(values))
+        ax.scatter(np.full(len(values), i) + jitter, values, color=[BLUE, ORANGE, GREEN, MAGENTA][i % 4],
+                   s=27, edgecolor="white", linewidth=.4, zorder=3)
+        if len(values):
+            ax.plot([i - .15, i + .15], [np.median(values)] * 2, color=DARK, zorder=4)
+    ax.set_xticks(range(len(groups)), groups)
+    ax.set_ylabel("ADORA2A expression")
+
+
+def draw_fig4d(ax):
+    z = pd.read_csv(ROOT / "05_contextual_human/Context_CD31_FVM_effects.tsv", sep="\t")
+    yy = np.arange(len(z))
+    ax.errorbar(z.effect, yy, xerr=[z.effect - z.lo, z.hi - z.effect],
+                fmt="o", color=DARK, ecolor=DARK, capsize=3, ms=4)
+    reference_line(ax)
+    labels = [
+        "GSE94019\nPDR FVM vs control",
+        "GSE307925\ntreated vs untreated",
+        "GSE179568\nPDR vs MP",
+        "GSE179568\nPDR vs MH",
+    ]
+    ax.set_yticks(yy, labels)
+    ax.set_xlabel("Dataset-specific coefficient (95% CI)")
+
+
+def draw_fig4e(ax):
+    z = pd.read_csv(ROOT / "05_contextual_human/Context_2026_MNV.tsv", sep="\t")
+    z = z[z.file == "media-2.xlsx"].drop_duplicates("cell_type").sort_values("logFC_pseudobulk")
+    yy = np.arange(len(z))
+    ax.scatter(z.logFC_pseudobulk, yy, color=ORANGE, s=28, edgecolor="white", linewidth=.4, zorder=3)
+    reference_line(ax)
+    ax.set_yticks(yy, z.cell_type)
+    ax.set_xlabel("MNV vs control pseudobulk logFC")
+
+
+def draw_fig4f(ax):
+    z = pd.read_csv(ROOT / "05_contextual_human/Context_GSE234047.tsv", sep="\t")
+    wide = z.pivot(index="section", columns="stratum", values="mean_count")
+    if {"NON_LESIONAL", "LESION_OVERLAP"}.issubset(wide.columns):
+        for _, row in wide.iterrows():
+            ax.plot([0, 1], [row.NON_LESIONAL, row.LESION_OVERLAP], color=GREY, marker="o", ms=4.5)
+    ax.set_xticks([0, 1], ["Non-lesional", "Lesion overlap"])
+    ax.set_xlim(-.15, 1.15)
+    ax.set_ylabel("Mean ADORA2A count per spot")
+
+
+def build_fig4() -> plt.Figure:
+    fig, axes = plt.subplots(3, 2, figsize=(CONTRACT["output"]["width_in"], CONTRACT["figures"]["Fig4"]["height_in"]))
+    fig.subplots_adjust(left=.185, right=.97, top=.945, bottom=.075, hspace=.72, wspace=.62)
+    titles = [
+        "GSE160306 retina", "GSE60436 FVM", "GSE276892 vitreous cells",
+        "CD31/FVM contexts", "2026 MNV preprint v1", "GSE234047 spatial",
+    ]
+    drawers = [draw_fig4a, draw_fig4b, draw_fig4c, draw_fig4d, draw_fig4e, draw_fig4f]
+    for ax, label, title, drawer in zip(axes.ravel(), "ABCDEF", titles, drawers):
+        panel_label(ax, label); panel_title(ax, label, title, pad=10); drawer(ax)
+    return fig
+
+
+def export_panel_previews() -> None:
+    panel_dir = OUT / "panel_previews"
+    panel_dir.mkdir(exist_ok=True)
+    specifications = [
+        ("Fig2A", draw_fig2a, "Cohort-level effects and pooled estimate", (5.8, 4.8)),
+        ("Fig2B", draw_fig2b, "Leave-one-cohort-out estimates", (4.4, 4.8)),
+        ("Fig2C", draw_fig2c, "Compartment sensitivity", (4.4, 3.4)),
+        ("Fig2D", draw_fig2d, "Strict-unit sensitivity", (4.4, 3.0)),
+        ("Fig3A", lambda ax: draw_fig3a(ax), "Higher-cell-count PDR donors", (4.4, 3.5)),
+        ("Fig3B", draw_fig3b, "Sensitivity-model estimates", (4.4, 3.5)),
+        ("Fig3C", draw_fig3c, "M0 leave-one-donor-out", (4.4, 3.8)),
+        ("Fig3D", draw_fig3d, "Identification diagnostics", (4.4, 3.4)),
+        ("Fig4A", draw_fig4a, "GSE160306 retina", (4.4, 3.2)),
+        ("Fig4B", draw_fig4b, "GSE60436 FVM", (4.4, 3.2)),
+        ("Fig4C", draw_fig4c, "GSE276892 vitreous cells", (4.4, 3.2)),
+        ("Fig4D", draw_fig4d, "CD31/FVM contexts", (4.8, 3.5)),
+        ("Fig4E", draw_fig4e, "2026 MNV preprint v1", (4.4, 3.2)),
+        ("Fig4F", draw_fig4f, "GSE234047 spatial", (4.4, 3.2)),
+    ]
+    for stem, drawer, title, size in specifications:
+        fig, ax = plt.subplots(figsize=size)
+        drawer(ax); ax.set_title(title, loc="left", fontsize=9, fontweight="semibold", pad=8)
+        fig.subplots_adjust(left=.22, right=.96, top=.88, bottom=.18)
+        fig.savefig(panel_dir / f"{stem}.png", dpi=180, facecolor="white")
+        plt.close(fig)
+
+
+qa_frames = []
+qa_frames.append(save_main_figure(build_fig1(), "Fig1", OUT))
+qa_frames.append(save_main_figure(build_fig2(), "Fig2", OUT))
+qa_frames.append(save_main_figure(build_fig3(), "Fig3", OUT))
+qa_frames.append(save_main_figure(build_fig4(), "Fig4", OUT))
+export_panel_previews()
+pd.concat(qa_frames, ignore_index=True).to_csv(OUT / "FIGURE_LAYOUT_QA_MAIN.tsv", sep="\t", index=False)
+print(f"Four main figures written to {OUT}")

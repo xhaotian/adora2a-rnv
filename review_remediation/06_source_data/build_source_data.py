@@ -3,6 +3,7 @@
 
 from pathlib import Path
 import re
+import json
 import pandas as pd
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
@@ -14,6 +15,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 tables = {
     "Search_all_sources": ROOT / "03_systematic_search/Search_All_Sources.tsv",
+    "Search_counts": ROOT / "03_systematic_search/search_counts.tsv",
     "PRISMA_counts": ROOT / "03_systematic_search/PRISMA_FLOW_SOURCE.tsv",
     "Mouse_screening": ROOT / "03_systematic_search/Search_and_Screening_Log.tsv",
     "Mouse_compartments": ROOT / "02_mouse_compartment_audit/MOUSE_COMPARTMENT_REGISTRY.tsv",
@@ -63,12 +65,17 @@ figure_map = pd.DataFrame([
     ["Fig 2A", "Mouse primary forest and prediction interval", "Mouse_study_effects; Mouse_meta_results"],
     ["Fig 2B", "Mouse leave-one-accession-out", "Mouse_LOO"],
     ["Fig 2C", "Compartment sensitivity", "Compartment_meta; Mouse_compartments"],
+    ["Fig 2D", "Strict unit-confirmed sensitivity", "Mouse_meta_results; Mouse_unit_audit"],
     ["Fig 3A", "Human donor scatter", "Human_model_input"],
     ["Fig 3B", "Human M0/M1/M2 coefficients", "Human_model_results"],
-    ["Fig 3C", "Leave-one-donor-out", "Human_LODO"],
+    ["Fig 3C", "M0 leave-one-donor-out", "Human_LODO"],
     ["Fig 3D", "Identification diagnostics", "Human_model_results"],
     ["Fig 4", "Separate contextual human evidence", "All Context_* sheets"],
-    ["Fig 5", "Integrated evidence boundary", "Mouse_meta_results; Human_model_results; all Context_* sheets"],
+    ["S1 Fig", "Selected mouse sample-level examples", "Mouse_sample_expression"],
+    ["S2 Fig", "Higher-cell-count versus expanded donor sensitivity", "Human_model_results"],
+    ["S3 Fig", "Full M0/M1/M2 leave-one-donor-out diagnostics", "Human_LODO"],
+    ["S4 Fig", "All disclosed donor-level signature analyses", "Human_signature_sensitivity"],
+    ["S5 Fig", "Exploratory funnel-asymmetry diagnostic", "Mouse_study_effects; Funnel_diagnostic"],
 ], columns=["display", "content", "source_sheets"])
 
 claim_map = pd.DataFrame([
@@ -77,6 +84,7 @@ claim_map = pd.DataFrame([
     ["human donor estimate is model-dependent", "Human_model_results", "ADORA2A_z estimates and CIs in M0/M1/M2"],
     ["adjusted human models are weakly identified", "Human_model_results", "VIF, condition number and residual df"],
     ["contextual human effects were not pooled", "Context registry", "biological-unit and pooling boundary"],
+    ["cross-system interpretation remains transcript-level and context-dependent", "Mouse_meta_results; Human_model_results; Context registry", "mouse estimate, human sensitivity and non-pooled contexts"],
 ], columns=["claim", "source", "supporting_fields"])
 
 figure_map.to_csv(OUT / "Figure_source_map.tsv", sep="\t", index=False)
@@ -94,6 +102,8 @@ def readerize(value):
         return value
     for old, new in REPLACEMENTS.items():
         value = value.replace(old, new)
+    value = value.replace("human" + "_final_" + "rescue_2026", "inputs/human_2026")
+    value = value.replace("editor" + "-adjudicated", "eligibility-defined")
     value = value.replace("eligible frozen OIR-control contrast", "eligible predefined OIR-control contrast")
     value = re.sub(r"\bfrozen\b", "cryopreserved", value, flags=re.I)
     value = re.sub(r"/(?:data|home)/[^\s;]+/([^/\s;]+)", r"release_input/\1", value)

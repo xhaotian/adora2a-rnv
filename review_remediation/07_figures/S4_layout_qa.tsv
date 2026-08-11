@@ -1,0 +1,51 @@
+figure	element	bbox	violation_type	status
+S4	text:0:ADORA2A coefficient (95% CI)	391.8,38.3,564.5,50.3	NONE	PASS
+S4	font:0:ADORA2A coefficient (95% CI)	391.8,38.3,564.5,50.3	NONE	PASS
+S4	text:1:−10	250.9,55.9,269.7,65.9	NONE	PASS
+S4	font:1:−10	250.9,55.9,269.7,65.9	NONE	PASS
+S4	text:2:−5	375.0,55.9,387.6,65.9	NONE	PASS
+S4	font:2:−5	375.0,55.9,387.6,65.9	NONE	PASS
+S4	text:3:0	499.3,55.9,505.4,65.9	NONE	PASS
+S4	font:3:0	499.3,55.9,505.4,65.9	NONE	PASS
+S4	text:4:5	620.3,55.9,626.4,65.9	NONE	PASS
+S4	font:4:5	620.3,55.9,626.4,65.9	NONE	PASS
+S4	text:5:Reactome VEGFA–VEGFR2 · M2	71.2,93.1,238.5,103.1	NONE	PASS
+S4	font:5:Reactome VEGFA–VEGFR2 · M2	71.2,93.1,238.5,103.1	NONE	PASS
+S4	text:6:Reactome VEGFA–VEGFR2 · M1	71.2,135.8,238.5,145.8	NONE	PASS
+S4	font:6:Reactome VEGFA–VEGFR2 · M1	71.2,135.8,238.5,145.8	NONE	PASS
+S4	text:7:Reactome VEGFA–VEGFR2 · M0	71.4,178.5,238.5,188.5	NONE	PASS
+S4	font:7:Reactome VEGFA–VEGFR2 · M0	71.4,178.5,238.5,188.5	NONE	PASS
+S4	text:8:Hallmark angiogenesis · M2	100.1,221.2,238.5,231.2	NONE	PASS
+S4	font:8:Hallmark angiogenesis · M2	100.1,221.2,238.5,231.2	NONE	PASS
+S4	text:9:Hallmark angiogenesis · M1	100.1,263.9,238.5,273.9	NONE	PASS
+S4	font:9:Hallmark angiogenesis · M1	100.1,263.9,238.5,273.9	NONE	PASS
+S4	text:10:Hallmark angiogenesis · M0	100.2,306.6,238.5,316.6	NONE	PASS
+S4	font:10:Hallmark angiogenesis · M0	100.2,306.6,238.5,316.6	NONE	PASS
+S4	text:11:External VEGF response · M2	90.1,349.2,238.5,359.2	NONE	PASS
+S4	font:11:External VEGF response · M2	90.1,349.2,238.5,359.2	NONE	PASS
+S4	text:12:External VEGF response · M1	90.1,391.9,238.5,401.9	NONE	PASS
+S4	font:12:External VEGF response · M1	90.1,391.9,238.5,401.9	NONE	PASS
+S4	text:13:External VEGF response · M0	90.2,434.6,238.5,444.6	NONE	PASS
+S4	font:13:External VEGF response · M0	90.2,434.6,238.5,444.6	NONE	PASS
+S4	text:14:Historical six-gene score · M2	91.6,477.3,238.5,487.3	NONE	PASS
+S4	font:14:Historical six-gene score · M2	91.6,477.3,238.5,487.3	NONE	PASS
+S4	text:15:Historical six-gene score · M1	91.6,520.0,238.5,530.0	NONE	PASS
+S4	font:15:Historical six-gene score · M1	91.6,520.0,238.5,530.0	NONE	PASS
+S4	text:16:Historical six-gene score · M0	91.7,562.7,238.5,572.7	NONE	PASS
+S4	font:16:Historical six-gene score · M0	91.7,562.7,238.5,572.7	NONE	PASS
+S4	tick_neighbor:axes0:0:−10	250.9,55.9,269.7,65.9	NONE	PASS
+S4	tick_neighbor:axes0:1:−5	375.0,55.9,387.6,65.9	NONE	PASS
+S4	tick_neighbor:axes0:2:0	499.3,55.9,505.4,65.9	NONE	PASS
+S4	tick_neighbor:axes0:3:5	620.3,55.9,626.4,65.9	NONE	PASS
+S4	tick_neighbor:axes0:4:Reactome VEGFA–VEGFR2 · M2	71.2,93.1,238.5,103.1	NONE	PASS
+S4	tick_neighbor:axes0:5:Reactome VEGFA–VEGFR2 · M1	71.2,135.8,238.5,145.8	NONE	PASS
+S4	tick_neighbor:axes0:6:Reactome VEGFA–VEGFR2 · M0	71.4,178.5,238.5,188.5	NONE	PASS
+S4	tick_neighbor:axes0:7:Hallmark angiogenesis · M2	100.1,221.2,238.5,231.2	NONE	PASS
+S4	tick_neighbor:axes0:8:Hallmark angiogenesis · M1	100.1,263.9,238.5,273.9	NONE	PASS
+S4	tick_neighbor:axes0:9:Hallmark angiogenesis · M0	100.2,306.6,238.5,316.6	NONE	PASS
+S4	tick_neighbor:axes0:10:External VEGF response · M2	90.1,349.2,238.5,359.2	NONE	PASS
+S4	tick_neighbor:axes0:11:External VEGF response · M1	90.1,391.9,238.5,401.9	NONE	PASS
+S4	tick_neighbor:axes0:12:External VEGF response · M0	90.2,434.6,238.5,444.6	NONE	PASS
+S4	tick_neighbor:axes0:13:Historical six-gene score · M2	91.6,477.3,238.5,487.3	NONE	PASS
+S4	tick_neighbor:axes0:14:Historical six-gene score · M1	91.6,520.0,238.5,530.0	NONE	PASS
+S4	tick_neighbor:axes0:15:Historical six-gene score · M0	91.7,562.7,238.5,572.7	NONE	PASS
