@@ -41,10 +41,10 @@ Fig1	"font:10:Reports assessed for eligibility
 n = 56"	163.4,253.4,322.8,274.9	NONE	PASS
 Fig1	"text:11:Reports excluded (n = 40)
 
-Non-P17 contrast ("	507.1,155.4,661.2,268.4	NONE	PASS
+Non-P17 contrast ("	507.1,166.8,667.5,256.9	NONE	PASS
 Fig1	"font:11:Reports excluded (n = 40)
 
-Non-P17 contrast ("	507.1,155.4,661.2,268.4	NONE	PASS
+Non-P17 contrast ("	507.1,166.8,667.5,256.9	NONE	PASS
 Fig1	"text:12:Cohorts included in meta-analysis
 n = 16
 
@@ -72,7 +72,7 @@ Fig1	box_padding:screen_excluded	507.1,448.6,602.0,470.1	NONE	PASS
 Fig1	box_padding:reports_sought	163.4,351.0,305.8,372.5	NONE	PASS
 Fig1	box_padding:reports_not_retrieved	507.1,351.0,617.5,372.5	NONE	PASS
 Fig1	box_padding:eligibility	163.4,253.4,322.8,274.9	NONE	PASS
-Fig1	box_padding:eligibility_excluded	507.1,155.4,661.2,268.4	NONE	PASS
+Fig1	box_padding:eligibility_excluded	507.1,166.8,667.5,256.9	NONE	PASS
 Fig1	box_padding:included	163.4,60.2,340.7,116.0	NONE	PASS
 Fig1	flow_box_intersection:records_identified:removed_before_screening	150.9,534.3,478.5,698.1	NONE	PASS
 Fig1	flow_box_intersection:records_identified:screen_excluded	150.9,534.3,478.5,698.1	NONE	PASS

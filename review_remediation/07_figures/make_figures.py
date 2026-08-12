@@ -166,13 +166,11 @@ def build_fig1() -> plt.Figure:
         f"Reports excluded (n = {c['reports_excluded']})",
         "",
         f"Non-P17 contrast (n = {c['reports_excluded_no_P17_contrast']})",
-        "Insufficient replication",
-        f"(n = {c['reports_excluded_insufficient_replication']})",
+        f"Insufficient replication (n = {c['reports_excluded_insufficient_replication']})",
         f"Wrong tissue/modality (n = {c['reports_excluded_wrong_tissue_or_modality']})",
         "No reconstructable",
         f"expression/contrast (n = {c['reports_excluded_no_recoverable_expression_or_contrast']})",
-        "Other eligibility",
-        f"reasons (n = {c['reports_excluded_other']})",
+        f"Other eligibility reasons (n = {c['reports_excluded_other']})",
     ])
     included = add_flow_box(ax, fig, x=.185, y=.030, width=.47, height=.130,
                             name="included", column="main", fill="#EEF5F1", lines=[
