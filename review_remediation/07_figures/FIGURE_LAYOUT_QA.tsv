@@ -122,10 +122,10 @@ Fig1	arrow_orthogonal:sought_to_assessed	313.7,292.8,315.7,333.1	NONE	PASS
 Fig1	arrow_text_clearance:sought_to_assessed	313.7,292.8,315.7,333.1	NONE	PASS
 Fig1	arrow_source_edge:sought_to_assessed	313.7,292.8,315.7,333.1	NONE	PASS
 Fig1	arrow_target_edge:sought_to_assessed	313.7,292.8,315.7,333.1	NONE	PASS
-Fig1	arrow_orthogonal:assessed_to_excluded	477.5,210.9,495.6,265.2	NONE	PASS
-Fig1	arrow_text_clearance:assessed_to_excluded	477.5,210.9,495.6,265.2	NONE	PASS
-Fig1	arrow_source_edge:assessed_to_excluded	477.5,210.9,495.6,265.2	NONE	PASS
-Fig1	arrow_target_edge:assessed_to_excluded	477.5,210.9,495.6,265.2	NONE	PASS
+Fig1	arrow_orthogonal:assessed_to_excluded	477.5,263.2,495.6,265.2	NONE	PASS
+Fig1	arrow_text_clearance:assessed_to_excluded	477.5,263.2,495.6,265.2	NONE	PASS
+Fig1	arrow_source_edge:assessed_to_excluded	477.5,263.2,495.6,265.2	NONE	PASS
+Fig1	arrow_target_edge:assessed_to_excluded	477.5,263.2,495.6,265.2	NONE	PASS
 Fig1	arrow_orthogonal:assessed_to_included	313.7,132.4,315.7,235.5	NONE	PASS
 Fig1	arrow_text_clearance:assessed_to_included	313.7,132.4,315.7,235.5	NONE	PASS
 Fig1	arrow_source_edge:assessed_to_included	313.7,132.4,315.7,235.5	NONE	PASS

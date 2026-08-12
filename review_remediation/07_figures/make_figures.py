@@ -196,9 +196,7 @@ def build_fig1() -> plt.Figure:
     orthogonal_arrow(ax, fig, sought, assessed, "sought_to_assessed")
     orthogonal_arrow(ax, fig, assessed, excluded, "assessed_to_excluded", [
         (assessed["x"] + assessed["w"], assessed["y"] + assessed["h"] / 2),
-        (.6675, assessed["y"] + assessed["h"] / 2),
-        (.6675, excluded["y"] + excluded["h"] / 2),
-        (excluded["x"], excluded["y"] + excluded["h"] / 2)])
+        (excluded["x"], assessed["y"] + assessed["h"] / 2)])
     orthogonal_arrow(ax, fig, assessed, included, "assessed_to_included", [
         (assessed["x"] + assessed["w"] / 2, assessed["y"]),
         (assessed["x"] + assessed["w"] / 2, .235),
