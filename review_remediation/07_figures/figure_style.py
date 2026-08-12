@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.legend import Legend
 from matplotlib.text import Text
+from matplotlib.transforms import Bbox
 import pandas as pd
 from PIL import Image, ImageDraw
 
@@ -69,6 +70,20 @@ def reference_line(ax, x: float = 0, *, linestyle: str = "-", linewidth: float |
 
 def register_box_text(fig, patch, text: Text, name: str) -> None:
     fig.__dict__.setdefault("_qa_box_text", []).append((patch, text, name))
+
+
+def register_flow_box(fig, patch, name: str, column: str) -> None:
+    fig.__dict__.setdefault("_qa_flow_boxes", []).append((patch, name, column))
+
+
+def register_phase_label(fig, text: Text, name: str) -> None:
+    fig.__dict__.setdefault("_qa_phase_labels", []).append((text, name))
+
+
+def register_orthogonal_arrow(fig, ax, vertices, source_patch, target_patch, name: str) -> None:
+    fig.__dict__.setdefault("_qa_orthogonal_arrows", []).append(
+        (ax, list(vertices), source_patch, target_patch, name)
+    )
 
 
 def register_legend_data(fig, legend, ax, xs, ys, name: str, radius_pt: float = 5) -> None:
@@ -133,6 +148,58 @@ def audit_figure(fig, figure_name: str) -> pd.DataFrame:
         tb = text.get_window_extent(renderer)
         padding = min(tb.x0 - pb.x0, pb.x1 - tb.x1, tb.y0 - pb.y0, pb.y1 - tb.y1)
         add(f"box_padding:{name}", tb, "BOX_TEXT_PADDING_BELOW_1.5_MM", padding >= required_padding)
+
+    flow_boxes = fig.__dict__.get("_qa_flow_boxes", [])
+    box_bboxes = [(patch.get_window_extent(renderer), name, column) for patch, name, column in flow_boxes]
+    for index, (bbox_a, name_a, column_a) in enumerate(box_bboxes):
+        for bbox_b, name_b, column_b in box_bboxes[index + 1:]:
+            if column_a == column_b:
+                continue
+            add(
+                f"flow_box_intersection:{name_a}:{name_b}", bbox_a,
+                "EXCLUSION_BOX_INTERSECTS_MAIN_FLOW_BOX", not _intersects(bbox_a, bbox_b),
+            )
+
+    for phase_text, name in fig.__dict__.get("_qa_phase_labels", []):
+        phase_bbox = phase_text.get_window_extent(renderer)
+        intrudes = any(_intersects(phase_bbox, box_bbox) for box_bbox, _, _ in box_bboxes)
+        add(f"phase_label_clearance:{name}", phase_bbox, "PHASE_LABEL_ENTERS_FLOW_BOX", not intrudes)
+
+    def segment_bbox(p0, p1, pad=1.0):
+        return Bbox.from_extents(
+            min(p0[0], p1[0]) - pad, min(p0[1], p1[1]) - pad,
+            max(p0[0], p1[0]) + pad, max(p0[1], p1[1]) + pad,
+        )
+
+    text_bboxes = [text.get_window_extent(renderer) for text in visible_text]
+    endpoint_tol = 1.5
+    for ax, vertices, source_patch, target_patch, name in fig.__dict__.get("_qa_orthogonal_arrows", []):
+        points = [ax.transData.transform(point) for point in vertices]
+        orthogonal = all(abs(a[0] - b[0]) < .5 or abs(a[1] - b[1]) < .5 for a, b in zip(points, points[1:]))
+        route_bbox = Bbox.union([segment_bbox(a, b) for a, b in zip(points, points[1:])])
+        add(f"arrow_orthogonal:{name}", route_bbox, "ARROW_NOT_ORTHOGONAL", orthogonal)
+        intersects_text = any(
+            _intersects(segment_bbox(a, b, pad=.5), text_bbox)
+            for a, b in zip(points, points[1:]) for text_bbox in text_bboxes
+        )
+        add(f"arrow_text_clearance:{name}", route_bbox, "ARROW_INTERSECTS_TEXT", not intersects_text)
+        source_bbox = source_patch.get_window_extent(renderer)
+        target_bbox = target_patch.get_window_extent(renderer)
+        start, end = points[0], points[-1]
+        source_edge = (
+            source_bbox.x0 - endpoint_tol <= start[0] <= source_bbox.x1 + endpoint_tol and
+            source_bbox.y0 - endpoint_tol <= start[1] <= source_bbox.y1 + endpoint_tol and
+            min(abs(start[0] - source_bbox.x0), abs(start[0] - source_bbox.x1),
+                abs(start[1] - source_bbox.y0), abs(start[1] - source_bbox.y1)) <= endpoint_tol
+        )
+        target_edge = (
+            target_bbox.x0 - endpoint_tol <= end[0] <= target_bbox.x1 + endpoint_tol and
+            target_bbox.y0 - endpoint_tol <= end[1] <= target_bbox.y1 + endpoint_tol and
+            min(abs(end[0] - target_bbox.x0), abs(end[0] - target_bbox.x1),
+                abs(end[1] - target_bbox.y0), abs(end[1] - target_bbox.y1)) <= endpoint_tol
+        )
+        add(f"arrow_source_edge:{name}", route_bbox, "ARROW_SOURCE_NOT_ON_BOX_EDGE", source_edge)
+        add(f"arrow_target_edge:{name}", route_bbox, "ARROW_TARGET_NOT_ON_BOX_EDGE", target_edge)
 
     registered_legends = fig.__dict__.get("_qa_legend_data", [])
     for legend, ax, xs, ys, name, radius_pt in registered_legends:

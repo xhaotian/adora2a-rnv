@@ -3,6 +3,11 @@ from pathlib import Path
 import hashlib
 import pandas as pd
 root=Path(__file__).resolve().parent
+for path in root.rglob('*.pyc'):
+    path.unlink()
+for path in sorted(root.rglob('__pycache__'), reverse=True):
+    if path.is_dir() and not any(path.iterdir()):
+        path.rmdir()
 rows=[]
 for path in sorted(root.rglob('*')):
     if path.is_file() and '.git' not in path.parts and path.name != 'SHA256SUMS.tsv':

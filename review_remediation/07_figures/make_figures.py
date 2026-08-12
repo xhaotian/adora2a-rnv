@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -12,12 +13,14 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-from matplotlib.patches import FancyBboxPatch
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+from matplotlib.path import Path as MplPath
 
 from figure_style import (
     BLUE, ORANGE, GREEN, MAGENTA, GREY, LIGHT, DARK, CONTRACT, STYLE,
     panel_label, panel_title, reference_line, register_box_text,
-    register_legend_data, save_main_figure,
+    register_flow_box, register_legend_data, register_orthogonal_arrow,
+    register_phase_label, save_main_figure,
 )
 
 
@@ -49,94 +52,159 @@ def read_counts() -> dict:
         raise RuntimeError(f"search_counts.json missing fields: {sorted(missing)}")
     if counts["unique_GEO_series"] != counts["unique_GEO_series_included"] + counts["unique_GEO_series_excluded"]:
         raise RuntimeError("GEO series arithmetic is inconsistent")
+    assertions = {
+        "1029 - 774 = 255": counts["records_identified_total"] - counts["duplicates_or_component_records_removed"] == counts["records_screened"],
+        "255 - 199 = 56": counts["records_screened"] - counts["records_excluded_before_report_assessment"] == counts["reports_sought_for_retrieval"],
+        "56 - 0 - 40 = 16": counts["reports_sought_for_retrieval"] - counts["reports_not_retrieved"] - counts["reports_excluded"] == counts["unique_eligible_cohorts_included"],
+        "14 + 2 = 16": counts["eligible_GEO_cohorts"] + counts["eligible_non_GEO_cohorts"] == counts["unique_eligible_cohorts_included"],
+    }
+    failed = [expression for expression, passed in assertions.items() if not passed]
+    if failed:
+        raise RuntimeError(f"PRISMA count arithmetic failed: {failed}")
     return counts
 
 
-def add_flow_box(ax, fig, *, x: float, top: float, width: float, lines: list[str], edge: str, name: str):
-    line_height = 0.027
-    height = 0.042 + line_height * len(lines)
-    y = top - height
+def add_flow_box(ax, fig, *, x: float, y: float, width: float, height: float,
+                 lines: list[str], name: str, column: str, fill: str = "white"):
     patch = FancyBboxPatch(
-        (x, y), width, height, boxstyle="round,pad=0.010",
-        facecolor="white", edgecolor=edge, linewidth=1.0,
+        (x, y), width, height, boxstyle="round,pad=0,rounding_size=0.004",
+        facecolor=fill, edgecolor="#333333", linewidth=0.9,
     )
     ax.add_patch(patch)
     text = ax.text(
-        x + 0.020, y + height / 2, "\n".join(lines),
+        x + 0.018, y + height / 2, "\n".join(lines),
         ha="left", va="center", multialignment="left",
-        fontsize=STYLE["annotation_pt"], linespacing=1.23,
+        fontsize=8.5, linespacing=1.18,
     )
     register_box_text(fig, patch, text, name)
+    register_flow_box(fig, patch, name, column)
     return {"x": x, "y": y, "w": width, "h": height, "patch": patch, "text": text}
 
 
-def arrow(ax, start, end):
-    ax.annotate(
-        "", xy=end, xytext=start,
-        arrowprops=dict(arrowstyle="-|>", color=GREY, lw=1.0,
-                        shrinkA=0, shrinkB=0, mutation_scale=10),
-        annotation_clip=False,
+def orthogonal_arrow(ax, fig, source, target, name: str, vertices=None):
+    if vertices is None:
+        vertices = [
+            (source["x"] + source["w"] / 2, source["y"]),
+            (target["x"] + target["w"] / 2, target["y"] + target["h"]),
+        ]
+    path = MplPath(vertices, [MplPath.MOVETO] + [MplPath.LINETO] * (len(vertices) - 1))
+    arrow_patch = FancyArrowPatch(
+        path=path, arrowstyle="-|>", color="#555555", linewidth=0.9,
+        mutation_scale=9, shrinkA=0, shrinkB=0, capstyle="butt", joinstyle="miter",
     )
+    ax.add_patch(arrow_patch)
+    register_orthogonal_arrow(fig, ax, vertices, source["patch"], target["patch"], name)
+
+
+def add_phase_label(ax, fig, label: str, y: float):
+    text = ax.text(
+        .070, y, label, ha="center", va="center", fontsize=9.2,
+        fontweight="bold", color="#777777", rotation=90,
+    )
+    register_phase_label(fig, text, label)
 
 
 def build_fig1() -> plt.Figure:
     c = read_counts()
     fig, ax = plt.subplots(figsize=(CONTRACT["output"]["width_in"], CONTRACT["figures"]["Fig1"]["height_in"]))
+    fig.subplots_adjust(left=.03, right=.985, top=.985, bottom=.03)
     ax.set_axis_off()
     ax.set_xlim(0, 1); ax.set_ylim(0, 1)
 
-    left = add_flow_box(ax, fig, x=.045, top=.965, width=.42, edge=BLUE, name="database_identification", lines=[
-        "Databases and registers",
+    add_phase_label(ax, fig, "IDENTIFICATION", .865)
+    add_phase_label(ax, fig, "SCREENING", .555)
+    add_phase_label(ax, fig, "ELIGIBILITY", .345)
+    add_phase_label(ax, fig, "INCLUDED", .108)
+
+    identified = add_flow_box(ax, fig, x=.185, y=.735, width=.47, height=.235,
+                              name="records_identified", column="main", lines=[
+        "Records identified from databases and",
+        "repositories",
+        f"Total records (n = {c['records_identified_total']})",
+        "",
         f"GEO objects (n = {c['records_identified_GEO']})",
         f"PubMed reports (n = {c['records_identified_PubMed']})",
-    ])
-    right = add_flow_box(ax, fig, x=.535, top=.965, width=.42, edge=BLUE, name="other_identification", lines=[
-        "Other sources",
         f"BioProject/SRA records (n = {c['records_identified_BioProject'] + c['records_identified_SRA']})",
-        f"Europe PMC reports (n = {c['records_identified_Europe_PMC']})",
+        f"Europe PMC records (n = {c['records_identified_Europe_PMC']})",
         f"BioStudies records (n = {c['records_identified_BioStudies']})",
     ])
-    norm = add_flow_box(ax, fig, x=.17, top=.745, width=.66, edge=GREY, name="normalization", lines=[
-        "Record normalization and deduplication",
-        f"Duplicate/component records removed (n = {c['duplicates_or_component_records_removed']})",
-        f"GEO objects consolidated to unique series (n = {c['unique_GEO_series']})",
-        "Cross-source duplicates resolved",
+    removed = add_flow_box(ax, fig, x=.678, y=.795, width=.302, height=.145,
+                           name="removed_before_screening", column="exclusion", lines=[
+        "Records removed before",
+        "screening",
+        "",
+        "Duplicate/component",
+        f"records removed (n = {c['duplicates_or_component_records_removed']})",
     ])
-    screened = add_flow_box(ax, fig, x=.075, top=.555, width=.46, edge=DARK, name="screened", lines=[
+    screened = add_flow_box(ax, fig, x=.185, y=.585, width=.47, height=.085,
+                            name="screened", column="main", lines=[
         "Records screened",
         f"n = {c['records_screened']}",
     ])
-    screen_excl = add_flow_box(ax, fig, x=.63, top=.555, width=.325, edge=GREY, name="screen_excluded", lines=[
+    screen_excl = add_flow_box(ax, fig, x=.678, y=.585, width=.302, height=.085,
+                               name="screen_excluded", column="exclusion", lines=[
         "Records excluded",
         f"n = {c['records_excluded_before_report_assessment']}",
     ])
-    assessed = add_flow_box(ax, fig, x=.075, top=.385, width=.46, edge=DARK, name="eligibility", lines=[
-        f"Reports sought and retrieved (n = {c['reports_sought_for_retrieval']})",
-        f"Reports assessed for eligibility (n = {c['reports_assessed_for_eligibility']})",
-        f"Reports not retrieved (n = {c['reports_not_retrieved']})",
+    sought = add_flow_box(ax, fig, x=.185, y=.445, width=.47, height=.085,
+                          name="reports_sought", column="main", lines=[
+        "Reports sought for retrieval",
+        f"n = {c['reports_sought_for_retrieval']}",
     ])
-    excluded = add_flow_box(ax, fig, x=.585, top=.405, width=.37, edge=GREY, name="eligibility_excluded", lines=[
-        f"Reports/datasets excluded (n = {c['reports_excluded']})",
+    not_retrieved = add_flow_box(ax, fig, x=.678, y=.445, width=.302, height=.085,
+                                 name="reports_not_retrieved", column="exclusion", lines=[
+        "Reports not retrieved",
+        f"n = {c['reports_not_retrieved']}",
+    ])
+    assessed = add_flow_box(ax, fig, x=.185, y=.305, width=.47, height=.085,
+                            name="eligibility", column="main", lines=[
+        "Reports assessed for eligibility",
+        f"n = {c['reports_assessed_for_eligibility']}",
+    ])
+    excluded = add_flow_box(ax, fig, x=.678, y=.155, width=.302, height=.235,
+                            name="eligibility_excluded", column="exclusion", lines=[
+        f"Reports excluded (n = {c['reports_excluded']})",
+        "",
         f"Non-P17 contrast (n = {c['reports_excluded_no_P17_contrast']})",
-        f"Insufficient replication (n = {c['reports_excluded_insufficient_replication']})",
+        "Insufficient replication",
+        f"(n = {c['reports_excluded_insufficient_replication']})",
         f"Wrong tissue/modality (n = {c['reports_excluded_wrong_tissue_or_modality']})",
-        f"No reconstructable expression /\ncontrast (n = {c['reports_excluded_no_recoverable_expression_or_contrast']})",
-        f"Other eligibility reasons (n = {c['reports_excluded_other']})",
+        "No reconstructable",
+        f"expression/contrast (n = {c['reports_excluded_no_recoverable_expression_or_contrast']})",
+        "Other eligibility",
+        f"reasons (n = {c['reports_excluded_other']})",
     ])
-    included = add_flow_box(ax, fig, x=.20, top=.165, width=.60, edge=GREEN, name="included", lines=[
-        "Unique eligible mouse cohorts",
+    included = add_flow_box(ax, fig, x=.185, y=.030, width=.47, height=.130,
+                            name="included", column="main", fill="#EEF5F1", lines=[
+        "Cohorts included in meta-analysis",
+        f"n = {c['unique_eligible_cohorts_included']}",
+        "",
         f"GEO cohorts (n = {c['eligible_GEO_cohorts']})",
         f"Non-GEO cohorts (n = {c['eligible_non_GEO_cohorts']})",
-        f"Total (k = {c['unique_eligible_cohorts_included']})",
     ])
 
-    arrow(ax, (left["x"] + left["w"] / 2, left["y"]), (norm["x"] + norm["w"] * .36, norm["y"] + norm["h"]))
-    arrow(ax, (right["x"] + right["w"] / 2, right["y"]), (norm["x"] + norm["w"] * .64, norm["y"] + norm["h"]))
-    arrow(ax, (norm["x"] + norm["w"] / 2, norm["y"]), (screened["x"] + screened["w"] / 2, screened["y"] + screened["h"]))
-    arrow(ax, (screened["x"] + screened["w"], screened["y"] + screened["h"] / 2), (screen_excl["x"], screen_excl["y"] + screen_excl["h"] / 2))
-    arrow(ax, (screened["x"] + screened["w"] / 2, screened["y"]), (assessed["x"] + assessed["w"] / 2, assessed["y"] + assessed["h"]))
-    arrow(ax, (assessed["x"] + assessed["w"], assessed["y"] + assessed["h"] / 2), (excluded["x"], excluded["y"] + excluded["h"] / 2))
-    arrow(ax, (assessed["x"] + assessed["w"] / 2, assessed["y"]), (included["x"] + included["w"] / 2, included["y"] + included["h"]))
+    orthogonal_arrow(ax, fig, identified, removed, "identified_to_removed", [
+        (identified["x"] + identified["w"], .865), (removed["x"], .865)])
+    orthogonal_arrow(ax, fig, identified, screened, "identified_to_screened")
+    orthogonal_arrow(ax, fig, screened, screen_excl, "screened_to_excluded", [
+        (screened["x"] + screened["w"], screened["y"] + screened["h"] / 2),
+        (screen_excl["x"], screen_excl["y"] + screen_excl["h"] / 2)])
+    orthogonal_arrow(ax, fig, screened, sought, "screened_to_sought")
+    orthogonal_arrow(ax, fig, sought, not_retrieved, "sought_to_not_retrieved", [
+        (sought["x"] + sought["w"], sought["y"] + sought["h"] / 2),
+        (not_retrieved["x"], not_retrieved["y"] + not_retrieved["h"] / 2)])
+    orthogonal_arrow(ax, fig, sought, assessed, "sought_to_assessed")
+    orthogonal_arrow(ax, fig, assessed, excluded, "assessed_to_excluded", [
+        (assessed["x"] + assessed["w"], assessed["y"] + assessed["h"] / 2),
+        (.6675, assessed["y"] + assessed["h"] / 2),
+        (.6675, excluded["y"] + excluded["h"] / 2),
+        (excluded["x"], excluded["y"] + excluded["h"] / 2)])
+    orthogonal_arrow(ax, fig, assessed, included, "assessed_to_included", [
+        (assessed["x"] + assessed["w"] / 2, assessed["y"]),
+        (assessed["x"] + assessed["w"] / 2, .235),
+        (included["x"] + included["w"] / 2, .235),
+        (included["x"] + included["w"] / 2, included["y"] + included["h"]),
+    ])
     return fig
 
 
@@ -454,11 +522,33 @@ def export_panel_previews() -> None:
         plt.close(fig)
 
 
-qa_frames = []
-qa_frames.append(save_main_figure(build_fig1(), "Fig1", OUT))
-qa_frames.append(save_main_figure(build_fig2(), "Fig2", OUT))
-qa_frames.append(save_main_figure(build_fig3(), "Fig3", OUT))
-qa_frames.append(save_main_figure(build_fig4(), "Fig4", OUT))
-export_panel_previews()
-pd.concat(qa_frames, ignore_index=True).to_csv(OUT / "FIGURE_LAYOUT_QA_MAIN.tsv", sep="\t", index=False)
-print(f"Four main figures written to {OUT}")
+parser = argparse.ArgumentParser()
+parser.add_argument("--fig1-only", action="store_true", help="Regenerate only the PRISMA flow figure and preserve Fig 2–4 files.")
+args = parser.parse_args()
+
+if args.fig1_only:
+    fig1_qa = save_main_figure(build_fig1(), "Fig1", OUT)
+    existing = OUT / "FIGURE_LAYOUT_QA_MAIN.tsv"
+    if existing.exists():
+        prior = pd.read_csv(existing, sep="\t")
+        main_qa = pd.concat([fig1_qa, prior.loc[prior.figure != "Fig1"]], ignore_index=True)
+    else:
+        main_qa = fig1_qa
+    main_qa.to_csv(existing, sep="\t", index=False)
+    combined = OUT / "FIGURE_LAYOUT_QA.tsv"
+    if combined.exists():
+        prior_combined = pd.read_csv(combined, sep="\t")
+        pd.concat([fig1_qa, prior_combined.loc[prior_combined.figure != "Fig1"]], ignore_index=True).to_csv(
+            combined, sep="\t", index=False
+        )
+    print(f"Fig1 written to {OUT}; Fig2–4 files preserved")
+else:
+    qa_frames = [
+        save_main_figure(build_fig1(), "Fig1", OUT),
+        save_main_figure(build_fig2(), "Fig2", OUT),
+        save_main_figure(build_fig3(), "Fig3", OUT),
+        save_main_figure(build_fig4(), "Fig4", OUT),
+    ]
+    export_panel_previews()
+    pd.concat(qa_frames, ignore_index=True).to_csv(OUT / "FIGURE_LAYOUT_QA_MAIN.tsv", sep="\t", index=False)
+    print(f"Four main figures written to {OUT}")

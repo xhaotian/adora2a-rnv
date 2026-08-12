@@ -1,56 +1,135 @@
 figure	element	bbox	violation_type	status
-Fig1	"text:0:Databases and registers
-GEO objects (n = 219)"	128.0,559.2,255.5,592.9	NONE	PASS
-Fig1	"font:0:Databases and registers
-GEO objects (n = 219)"	128.0,559.2,255.5,592.9	NONE	PASS
-Fig1	"text:1:Other sources
-BioProject/SRA records (n = 187"	405.2,545.9,570.6,591.4	NONE	PASS
-Fig1	"font:1:Other sources
-BioProject/SRA records (n = 187"	405.2,545.9,570.6,591.4	NONE	PASS
-Fig1	"text:2:Record normalization and deduplication
-Duplic"	198.7,424.8,451.6,470.3	NONE	PASS
-Fig1	"font:2:Record normalization and deduplication
-Duplic"	198.7,424.8,451.6,470.3	NONE	PASS
-Fig1	"text:3:Records screened
-n = 255"	145.0,346.9,235.4,368.7	NONE	PASS
-Fig1	"font:3:Records screened
-n = 255"	145.0,346.9,235.4,368.7	NONE	PASS
-Fig1	"text:4:Records excluded
-n = 199"	459.0,346.9,548.2,368.7	NONE	PASS
-Fig1	"font:4:Records excluded
-n = 199"	459.0,346.9,548.2,368.7	NONE	PASS
-Fig1	"text:5:Reports sought and retrieved (n = 56)
-Reports"	145.0,239.9,337.5,273.6	NONE	PASS
-Fig1	"font:5:Reports sought and retrieved (n = 56)
-Reports"	145.0,239.9,337.5,273.6	NONE	PASS
-Fig1	"text:6:Reports/datasets excluded (n = 40)
-Non-P17 co"	433.5,204.9,607.4,286.0	NONE	PASS
-Fig1	"font:6:Reports/datasets excluded (n = 40)
-Non-P17 co"	433.5,204.9,607.4,286.0	NONE	PASS
-Fig1	"text:7:Unique eligible mouse cohorts
-GEO cohorts (n "	215.7,105.4,365.3,151.0	NONE	PASS
-Fig1	"font:7:Unique eligible mouse cohorts
-GEO cohorts (n "	215.7,105.4,365.3,151.0	NONE	PASS
-Fig1	tick_neighbor:axes0:0:0.0	83.6,58.9,98.9,68.9	NONE	PASS
-Fig1	tick_neighbor:axes0:1:0.2	196.7,58.9,212.1,68.9	NONE	PASS
-Fig1	tick_neighbor:axes0:2:0.4	309.9,58.9,325.2,68.9	NONE	PASS
-Fig1	tick_neighbor:axes0:3:0.6	423.0,58.9,438.4,68.9	NONE	PASS
-Fig1	tick_neighbor:axes0:4:0.8	536.2,58.9,551.5,68.9	NONE	PASS
-Fig1	tick_neighbor:axes0:5:1.0	649.3,58.9,664.7,68.9	NONE	PASS
-Fig1	tick_neighbor:axes0:6:0.0	66.3,72.6,81.5,82.6	NONE	PASS
-Fig1	tick_neighbor:axes0:7:0.2	66.2,182.8,81.5,192.8	NONE	PASS
-Fig1	tick_neighbor:axes0:8:0.4	66.3,292.9,81.5,302.9	NONE	PASS
-Fig1	tick_neighbor:axes0:9:0.6	66.2,403.0,81.5,413.0	NONE	PASS
-Fig1	tick_neighbor:axes0:10:0.8	66.2,513.1,81.5,523.1	NONE	PASS
-Fig1	tick_neighbor:axes0:11:1.0	66.2,623.2,81.5,633.2	NONE	PASS
-Fig1	box_padding:database_identification	128.0,559.2,255.5,592.9	NONE	PASS
-Fig1	box_padding:other_identification	405.2,545.9,570.6,591.4	NONE	PASS
-Fig1	box_padding:normalization	198.7,424.8,451.6,470.3	NONE	PASS
-Fig1	box_padding:screened	145.0,346.9,235.4,368.7	NONE	PASS
-Fig1	box_padding:screen_excluded	459.0,346.9,548.2,368.7	NONE	PASS
-Fig1	box_padding:eligibility	145.0,239.9,337.5,273.6	NONE	PASS
-Fig1	box_padding:eligibility_excluded	433.5,204.9,607.4,286.0	NONE	PASS
-Fig1	box_padding:included	215.7,105.4,365.3,151.0	NONE	PASS
+Fig1	text:0:IDENTIFICATION	64.7,574.1,76.7,675.8	NONE	PASS
+Fig1	font:0:IDENTIFICATION	64.7,574.1,76.7,675.8	NONE	PASS
+Fig1	text:1:SCREENING	64.7,370.9,76.7,446.7	NONE	PASS
+Fig1	font:1:SCREENING	64.7,370.9,76.7,446.7	NONE	PASS
+Fig1	text:2:ELIGIBILITY	64.7,225.7,76.7,299.1	NONE	PASS
+Fig1	font:2:ELIGIBILITY	64.7,225.7,76.7,299.1	NONE	PASS
+Fig1	text:3:INCLUDED	64.7,64.3,76.7,130.1	NONE	PASS
+Fig1	font:3:INCLUDED	64.7,64.3,76.7,130.1	NONE	PASS
+Fig1	"text:4:Records identified from databases and
+reposit"	163.4,565.5,365.7,667.0	NONE	PASS
+Fig1	"font:4:Records identified from databases and
+reposit"	163.4,565.5,365.7,667.0	NONE	PASS
+Fig1	"text:5:Records removed before
+screening
+
+Duplicate/c"	507.1,598.8,647.0,654.6	NONE	PASS
+Fig1	"font:5:Records removed before
+screening
+
+Duplicate/c"	507.1,598.8,647.0,654.6	NONE	PASS
+Fig1	"text:6:Records screened
+n = 255"	163.4,448.6,259.5,470.1	NONE	PASS
+Fig1	"font:6:Records screened
+n = 255"	163.4,448.6,259.5,470.1	NONE	PASS
+Fig1	"text:7:Records excluded
+n = 199"	507.1,448.6,602.0,470.1	NONE	PASS
+Fig1	"font:7:Records excluded
+n = 199"	507.1,448.6,602.0,470.1	NONE	PASS
+Fig1	"text:8:Reports sought for retrieval
+n = 56"	163.4,351.0,305.8,372.5	NONE	PASS
+Fig1	"font:8:Reports sought for retrieval
+n = 56"	163.4,351.0,305.8,372.5	NONE	PASS
+Fig1	"text:9:Reports not retrieved
+n = 0"	507.1,351.0,617.5,372.5	NONE	PASS
+Fig1	"font:9:Reports not retrieved
+n = 0"	507.1,351.0,617.5,372.5	NONE	PASS
+Fig1	"text:10:Reports assessed for eligibility
+n = 56"	163.4,253.4,322.8,274.9	NONE	PASS
+Fig1	"font:10:Reports assessed for eligibility
+n = 56"	163.4,253.4,322.8,274.9	NONE	PASS
+Fig1	"text:11:Reports excluded (n = 40)
+
+Non-P17 contrast ("	507.1,155.4,661.2,268.4	NONE	PASS
+Fig1	"font:11:Reports excluded (n = 40)
+
+Non-P17 contrast ("	507.1,155.4,661.2,268.4	NONE	PASS
+Fig1	"text:12:Cohorts included in meta-analysis
+n = 16
+
+GEO"	163.4,60.2,340.7,116.0	NONE	PASS
+Fig1	"font:12:Cohorts included in meta-analysis
+n = 16
+
+GEO"	163.4,60.2,340.7,116.0	NONE	PASS
+Fig1	tick_neighbor:axes0:0:0.0	14.3,2.2,29.5,12.2	NONE	PASS
+Fig1	tick_neighbor:axes0:1:0.2	153.6,2.2,169.0,12.2	NONE	PASS
+Fig1	tick_neighbor:axes0:2:0.4	293.1,2.2,308.4,12.2	NONE	PASS
+Fig1	tick_neighbor:axes0:3:0.6	432.5,2.2,447.9,12.2	NONE	PASS
+Fig1	tick_neighbor:axes0:4:0.8	571.9,2.2,587.3,12.2	NONE	PASS
+Fig1	tick_neighbor:axes0:5:1.0	711.4,2.2,726.7,12.2	NONE	PASS
+Fig1	tick_neighbor:axes0:6:0.0	-3.1,15.9,12.2,25.9	NONE	PASS
+Fig1	tick_neighbor:axes0:7:0.2	-3.2,155.3,12.2,165.3	NONE	PASS
+Fig1	tick_neighbor:axes0:8:0.4	-3.1,294.8,12.2,304.8	NONE	PASS
+Fig1	tick_neighbor:axes0:9:0.6	-3.2,434.2,12.2,444.2	NONE	PASS
+Fig1	tick_neighbor:axes0:10:0.8	-3.2,573.6,12.2,583.6	NONE	PASS
+Fig1	tick_neighbor:axes0:11:1.0	-3.2,713.0,12.2,723.0	NONE	PASS
+Fig1	box_padding:records_identified	163.4,565.5,365.7,667.0	NONE	PASS
+Fig1	box_padding:removed_before_screening	507.1,598.8,647.0,654.6	NONE	PASS
+Fig1	box_padding:screened	163.4,448.6,259.5,470.1	NONE	PASS
+Fig1	box_padding:screen_excluded	507.1,448.6,602.0,470.1	NONE	PASS
+Fig1	box_padding:reports_sought	163.4,351.0,305.8,372.5	NONE	PASS
+Fig1	box_padding:reports_not_retrieved	507.1,351.0,617.5,372.5	NONE	PASS
+Fig1	box_padding:eligibility	163.4,253.4,322.8,274.9	NONE	PASS
+Fig1	box_padding:eligibility_excluded	507.1,155.4,661.2,268.4	NONE	PASS
+Fig1	box_padding:included	163.4,60.2,340.7,116.0	NONE	PASS
+Fig1	flow_box_intersection:records_identified:removed_before_screening	150.9,534.3,478.5,698.1	NONE	PASS
+Fig1	flow_box_intersection:records_identified:screen_excluded	150.9,534.3,478.5,698.1	NONE	PASS
+Fig1	flow_box_intersection:records_identified:reports_not_retrieved	150.9,534.3,478.5,698.1	NONE	PASS
+Fig1	flow_box_intersection:records_identified:eligibility_excluded	150.9,534.3,478.5,698.1	NONE	PASS
+Fig1	flow_box_intersection:removed_before_screening:screened	494.6,576.1,705.1,677.2	NONE	PASS
+Fig1	flow_box_intersection:removed_before_screening:reports_sought	494.6,576.1,705.1,677.2	NONE	PASS
+Fig1	flow_box_intersection:removed_before_screening:eligibility	494.6,576.1,705.1,677.2	NONE	PASS
+Fig1	flow_box_intersection:removed_before_screening:included	494.6,576.1,705.1,677.2	NONE	PASS
+Fig1	flow_box_intersection:screened:screen_excluded	150.9,429.7,478.5,489.0	NONE	PASS
+Fig1	flow_box_intersection:screened:reports_not_retrieved	150.9,429.7,478.5,489.0	NONE	PASS
+Fig1	flow_box_intersection:screened:eligibility_excluded	150.9,429.7,478.5,489.0	NONE	PASS
+Fig1	flow_box_intersection:screen_excluded:reports_sought	494.6,429.7,705.1,489.0	NONE	PASS
+Fig1	flow_box_intersection:screen_excluded:eligibility	494.6,429.7,705.1,489.0	NONE	PASS
+Fig1	flow_box_intersection:screen_excluded:included	494.6,429.7,705.1,489.0	NONE	PASS
+Fig1	flow_box_intersection:reports_sought:reports_not_retrieved	150.9,332.1,478.5,391.4	NONE	PASS
+Fig1	flow_box_intersection:reports_sought:eligibility_excluded	150.9,332.1,478.5,391.4	NONE	PASS
+Fig1	flow_box_intersection:reports_not_retrieved:eligibility	494.6,332.1,705.1,391.4	NONE	PASS
+Fig1	flow_box_intersection:reports_not_retrieved:included	494.6,332.1,705.1,391.4	NONE	PASS
+Fig1	flow_box_intersection:eligibility:eligibility_excluded	150.9,234.5,478.5,293.8	NONE	PASS
+Fig1	flow_box_intersection:eligibility_excluded:included	494.6,130.0,705.1,293.8	NONE	PASS
+Fig1	phase_label_clearance:IDENTIFICATION	64.7,574.1,76.7,675.8	NONE	PASS
+Fig1	phase_label_clearance:SCREENING	64.7,370.9,76.7,446.7	NONE	PASS
+Fig1	phase_label_clearance:ELIGIBILITY	64.7,225.7,76.7,299.1	NONE	PASS
+Fig1	phase_label_clearance:INCLUDED	64.7,64.3,76.7,130.1	NONE	PASS
+Fig1	arrow_orthogonal:identified_to_removed	477.5,623.9,495.6,625.9	NONE	PASS
+Fig1	arrow_text_clearance:identified_to_removed	477.5,623.9,495.6,625.9	NONE	PASS
+Fig1	arrow_source_edge:identified_to_removed	477.5,623.9,495.6,625.9	NONE	PASS
+Fig1	arrow_target_edge:identified_to_removed	477.5,623.9,495.6,625.9	NONE	PASS
+Fig1	arrow_orthogonal:identified_to_screened	313.7,488.0,315.7,535.3	NONE	PASS
+Fig1	arrow_text_clearance:identified_to_screened	313.7,488.0,315.7,535.3	NONE	PASS
+Fig1	arrow_source_edge:identified_to_screened	313.7,488.0,315.7,535.3	NONE	PASS
+Fig1	arrow_target_edge:identified_to_screened	313.7,488.0,315.7,535.3	NONE	PASS
+Fig1	arrow_orthogonal:screened_to_excluded	477.5,458.4,495.6,460.4	NONE	PASS
+Fig1	arrow_text_clearance:screened_to_excluded	477.5,458.4,495.6,460.4	NONE	PASS
+Fig1	arrow_source_edge:screened_to_excluded	477.5,458.4,495.6,460.4	NONE	PASS
+Fig1	arrow_target_edge:screened_to_excluded	477.5,458.4,495.6,460.4	NONE	PASS
+Fig1	arrow_orthogonal:screened_to_sought	313.7,390.4,315.7,430.7	NONE	PASS
+Fig1	arrow_text_clearance:screened_to_sought	313.7,390.4,315.7,430.7	NONE	PASS
+Fig1	arrow_source_edge:screened_to_sought	313.7,390.4,315.7,430.7	NONE	PASS
+Fig1	arrow_target_edge:screened_to_sought	313.7,390.4,315.7,430.7	NONE	PASS
+Fig1	arrow_orthogonal:sought_to_not_retrieved	477.5,360.8,495.6,362.8	NONE	PASS
+Fig1	arrow_text_clearance:sought_to_not_retrieved	477.5,360.8,495.6,362.8	NONE	PASS
+Fig1	arrow_source_edge:sought_to_not_retrieved	477.5,360.8,495.6,362.8	NONE	PASS
+Fig1	arrow_target_edge:sought_to_not_retrieved	477.5,360.8,495.6,362.8	NONE	PASS
+Fig1	arrow_orthogonal:sought_to_assessed	313.7,292.8,315.7,333.1	NONE	PASS
+Fig1	arrow_text_clearance:sought_to_assessed	313.7,292.8,315.7,333.1	NONE	PASS
+Fig1	arrow_source_edge:sought_to_assessed	313.7,292.8,315.7,333.1	NONE	PASS
+Fig1	arrow_target_edge:sought_to_assessed	313.7,292.8,315.7,333.1	NONE	PASS
+Fig1	arrow_orthogonal:assessed_to_excluded	477.5,210.9,495.6,265.2	NONE	PASS
+Fig1	arrow_text_clearance:assessed_to_excluded	477.5,210.9,495.6,265.2	NONE	PASS
+Fig1	arrow_source_edge:assessed_to_excluded	477.5,210.9,495.6,265.2	NONE	PASS
+Fig1	arrow_target_edge:assessed_to_excluded	477.5,210.9,495.6,265.2	NONE	PASS
+Fig1	arrow_orthogonal:assessed_to_included	313.7,132.4,315.7,235.5	NONE	PASS
+Fig1	arrow_text_clearance:assessed_to_included	313.7,132.4,315.7,235.5	NONE	PASS
+Fig1	arrow_source_edge:assessed_to_included	313.7,132.4,315.7,235.5	NONE	PASS
+Fig1	arrow_target_edge:assessed_to_included	313.7,132.4,315.7,235.5	NONE	PASS
 Fig2	text:panel_label:A:A	40.7,825.6,51.7,839.6	NONE	PASS
 Fig2	font:panel_label:A:A	40.7,825.6,51.7,839.6	NONE	PASS
 Fig2	text:1:Hedges g (OIR versus normoxia)	313.7,412.6,496.6,424.6	NONE	PASS

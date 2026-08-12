@@ -31,11 +31,11 @@
   },
   "figures": {
     "Fig1": {
-      "height_in": 7.15,
+      "height_in": 7.3,
       "grid": "PRISMA flow",
       "panels": {"flow": {"role": "dataset identification", "plot_type": "flow diagram"}},
-      "preserve": ["existing colour family", "independent main figure"],
-      "forbid": ["whole-figure title", "search-date subtitle", "floating arrows", "invented counts"]
+      "preserve": ["independent main figure", "machine-readable count source"],
+      "forbid": ["whole-figure title", "search-date subtitle", "floating arrows", "diagonal arrows", "invented counts", "GEO normalization detail as a flow node"]
     },
     "Fig2": {
       "height_in": 8.55,
